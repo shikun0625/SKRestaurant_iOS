@@ -1,0 +1,6 @@
+framework module Pods_SKRestaurant_iOS {
+  umbrella header "Pods-SKRestaurant_iOS-umbrella.h"
+
+  export *
+  module * { export * }
+}
