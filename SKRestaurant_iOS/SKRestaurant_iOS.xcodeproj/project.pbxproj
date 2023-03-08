@@ -16,6 +16,8 @@
 		F68EFAA029B5B38300C1907A /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F68EFA9F29B5B38300C1907A /* LoginViewController.swift */; };
 		F68EFAA329B5B72200C1907A /* MainSplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F68EFAA229B5B72200C1907A /* MainSplitViewController.swift */; };
 		F68EFAA529B5B97700C1907A /* SideMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F68EFAA429B5B97700C1907A /* SideMainViewController.swift */; };
+		F6C8962429B83E270012C2B5 /* RestaurantServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6C8962329B83E270012C2B5 /* RestaurantServer.swift */; };
+		F6C8962629B847270012C2B5 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6C8962529B847270012C2B5 /* Utils.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +34,8 @@
 		F68EFA9F29B5B38300C1907A /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		F68EFAA229B5B72200C1907A /* MainSplitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainSplitViewController.swift; sourceTree = "<group>"; };
 		F68EFAA429B5B97700C1907A /* SideMainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMainViewController.swift; sourceTree = "<group>"; };
+		F6C8962329B83E270012C2B5 /* RestaurantServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantServer.swift; sourceTree = "<group>"; };
+		F6C8962529B847270012C2B5 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,7 +56,6 @@
 				ED463416132A9CBF7C2C4682 /* Pods-SKRestaurant_iOS.debug.xcconfig */,
 				139AEFBBEE1EA9774053B61C /* Pods-SKRestaurant_iOS.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -85,6 +88,8 @@
 		F68EFA8929B5B21E00C1907A /* SKRestaurant_iOS */ = {
 			isa = PBXGroup;
 			children = (
+				F6C8962229B83DDC0012C2B5 /* Networks */,
+				F6C8962129B83DD40012C2B5 /* Util */,
 				F68EFAA129B5B71100C1907A /* Main */,
 				F68EFA9E29B5B36D00C1907A /* Login */,
 				F68EFA8A29B5B21E00C1907A /* AppDelegate.swift */,
@@ -112,6 +117,22 @@
 				F68EFAA429B5B97700C1907A /* SideMainViewController.swift */,
 			);
 			path = Main;
+			sourceTree = "<group>";
+		};
+		F6C8962129B83DD40012C2B5 /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				F6C8962529B847270012C2B5 /* Utils.swift */,
+			);
+			path = Util;
+			sourceTree = "<group>";
+		};
+		F6C8962229B83DDC0012C2B5 /* Networks */ = {
+			isa = PBXGroup;
+			children = (
+				F6C8962329B83E270012C2B5 /* RestaurantServer.swift */,
+			);
+			path = Networks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -230,7 +251,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				F68EFAA329B5B72200C1907A /* MainSplitViewController.swift in Sources */,
+				F6C8962429B83E270012C2B5 /* RestaurantServer.swift in Sources */,
 				F68EFAA529B5B97700C1907A /* SideMainViewController.swift in Sources */,
+				F6C8962629B847270012C2B5 /* Utils.swift in Sources */,
 				F68EFAA029B5B38300C1907A /* LoginViewController.swift in Sources */,
 				F68EFA8B29B5B21E00C1907A /* AppDelegate.swift in Sources */,
 				F68EFA8D29B5B21E00C1907A /* SceneDelegate.swift in Sources */,
