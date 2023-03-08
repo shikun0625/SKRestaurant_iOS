@@ -7,9 +7,13 @@
 
 import Foundation
 import UIKit
+import ProgressHUD
 
 class LoginViewController: UIViewController {
     
+    @IBOutlet weak var userNameTextField: UITextField!
+    
+    @IBOutlet weak var passwordTextField: UITextField!
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
@@ -17,7 +21,14 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func loginPressed(_ sender: UIButton) {
-        toMainSplitView()
+        
+        ProgressHUD.show(nil, interaction: false)
+        let loginService = UserLoginService()
+        loginService.delegate = self
+        let input = UserLoginBodyParameter(username: userNameTextField.text, password: passwordTextField.text)
+        loginService.bodyParameter = input
+        loginService.startRequest()
+        
     }
     
     private func toMainSplitView() -> Void {
@@ -29,5 +40,18 @@ class LoginViewController: UIViewController {
         } as! UIWindowScene
         
         scene.keyWindow?.rootViewController = vc
+    }
+}
+
+extension LoginViewController: HttpServiceDelegate {
+    func requestCompleted(result: SKHttpRequestResult, output: Any?, error: Error?) {
+        switch result {
+        case .success:
+            toMainSplitView()
+        case .failure:
+            ProgressHUD.showFailed(error?.localizedDescription, interaction: false)
+        default:
+            ProgressHUD.dismiss()
+        }
     }
 }

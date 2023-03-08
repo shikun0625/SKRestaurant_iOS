@@ -12,8 +12,8 @@ func log(_ item: Any, _ file: String = #file, _ line: Int = #line, _ function: S
 }
 
 extension Date {
-    var milliTimeIntervalSince1970:Int32 {
-        return Int32(timeIntervalSince1970 * 1000)
+    var milliTimeIntervalSince1970:Int64 {
+        return Int64(timeIntervalSince1970 * 1000)
     }
 }
 

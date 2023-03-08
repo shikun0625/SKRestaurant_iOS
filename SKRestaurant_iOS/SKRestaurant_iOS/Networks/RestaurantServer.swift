@@ -27,8 +27,25 @@ enum SKHttpRequestResult {
     case downloading
 }
 
-enum SKHTTPError: Error {
-    case HTTP_PARAMETER
+public enum SKHTTPError: Int, Error {
+    case HTTP_PARAMETER = 2501
+}
+
+extension SKHTTPError: CustomNSError {
+    
+    /// return the error domain of SwiftyJSONError
+    public static var errorDomain: String { return "sk.restaurant.HTTP" }
+    
+    /// return the error code of SwiftyJSONError
+    public var errorCode: Int { return self.rawValue }
+    
+    /// return the userInfo of SwiftyJSONError
+    public var errorUserInfo: [String: Any] {
+        switch self {
+        case .HTTP_PARAMETER:
+            return [NSLocalizedDescriptionKey: "请求参数错误."]
+        }
+    }
 }
 
 
@@ -42,18 +59,14 @@ extension HttpServiceDelegate {
     }
 }
 
-protocol HttpServiceParameter:Encodable {
-    func check()->Bool
-}
-
 protocol HttpServiceProtocol {
     func startRequest()
     func parameterCheck() -> Bool
 }
 
 class HttpService {
-    var queryParameter:Encodable?
-    var bodyParameter:Encodable?
+    var queryParameter:HandyJSON?
+    var bodyParameter:HandyJSON?
     weak var delegate:HttpServiceDelegate?
     
     func getHeader() -> HTTPHeaders {
@@ -78,15 +91,17 @@ class HttpService {
             headerStr = headerStr.appending(userToken)
         }
         
-        var queryParameterStr = JSON(queryParameter as Any).string
-        var bodyParameterStr = JSON(bodyParameter as Any).string
+        let queryParameterStr = queryParameter?.toJSONString()
+        let bodyParameterStr = bodyParameter?.toJSONString()
         
-        var requestStr = String(format: "%@%@%@",
+        let requestStr = String(format: "%@%@%@%@",
                                 queryParameterStr ?? "",
                                 "skrestaurant_key",
-                                bodyParameterStr ?? "")
+                                bodyParameterStr ?? "",
+                                headerStr
+        )
         
-        header.add(name: "reqeust_auth", value: (requestStr.data(using: .utf8)?.md5().toHexString())!)
+        header.add(name: "reqeust_auth", value: (requestStr.md5()))
         
         return header
     }
@@ -94,16 +109,27 @@ class HttpService {
 
 
 
-struct UserLoginBodyParameter:Encodable {
+struct UserLoginBodyParameter:HandyJSON,Encodable {
     var username:String?
     var password:String?
 }
 
 class UserLoginService:HttpService, HttpServiceProtocol {
     func parameterCheck() -> Bool {
-        if let bodyParameter = bodyParameter as? UserLoginBodyParameter {
-            return bodyParameter.username != nil
-            && bodyParameter.password != nil
+        if var bodyParameter = bodyParameter as? UserLoginBodyParameter {
+            if let username = bodyParameter.username {
+                if username.count == 0 {
+                    return false
+                }
+            }
+            if let password = bodyParameter.password {
+                if password.count == 0 {
+                    return false
+                }
+            }
+            
+            bodyParameter.password = bodyParameter.password?.md5()
+            return true
         }
         return false
     }
@@ -116,7 +142,18 @@ class UserLoginService:HttpService, HttpServiceProtocol {
             return
         }
         
-        AF.request("\(HTTP_SERVER_ADDRESS)/user/login", method:.post, parameters: bodyParameter as? UserLoginBodyParameter, encoder: .json, headers: getHeader())
+        AF.request("\(HTTP_SERVER_ADDRESS)/user/login", method:.post, parameters: bodyParameter as? UserLoginBodyParameter, encoder: .json, headers: getHeader()).responseString { response in
+            switch response.result {
+            case .success:
+                if self.delegate != nil {
+                    self.delegate?.requestCompleted(result: .success, output: nil, error: nil)
+                }
+            case let .failure(error):
+                if self.delegate != nil {
+                    self.delegate?.requestCompleted(result: .failure, output: nil, error: error)
+                }
+            }
+        }
     }
     
     
