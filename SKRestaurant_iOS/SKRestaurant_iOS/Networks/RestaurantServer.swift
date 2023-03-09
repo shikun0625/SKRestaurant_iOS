@@ -50,7 +50,7 @@ extension SKHTTPError: CustomNSError {
 
 
 protocol HttpServiceDelegate:AnyObject {
-    func requestCompleted(result:SKHttpRequestResult, output:Any?, error:Error?)
+    func requestCompleted(request:Request, result:SKHttpRequestResult, output:Any?, error:Error?)
 }
 
 extension HttpServiceDelegate {
@@ -60,11 +60,12 @@ extension HttpServiceDelegate {
 }
 
 protocol HttpServiceProtocol {
-    func startRequest()
+    func startRequest() -> (Request?, Error?)
     func parameterCheck() -> Bool
 }
 
 class HttpService {
+    var request:Request?
     var queryParameter:HttpParameter?
     var bodyParameter:HttpParameter?
     weak var delegate:HttpServiceDelegate?
@@ -86,6 +87,8 @@ class HttpService {
                                header["os_version"]!,
                                header["request_id"]!)
         
+        log(headerStr)
+        
         if let userToken = UserDefaults.sk_default.string(forKey: USER_DEFAULTS_USER_TOKEN) {
             header.add(name: "user_token", value: userToken)
             headerStr = headerStr.appending(userToken)
@@ -99,13 +102,13 @@ class HttpService {
                                 headerStr
         )
         
-        header.add(name: "reqeust_auth", value: (requestStr.md5()))
+        header.add(name: "request_auth", value: (requestStr.md5()))
         
         return header
     }
 }
 
-class HttpParameter:HandyJSON, Encodable {
+class HttpParameter:HandyJSON {
     required init() {
         
     }
@@ -137,26 +140,29 @@ class UserLoginService:HttpService, HttpServiceProtocol {
         return false
     }
     
-    func startRequest() {
+    func startRequest() -> (Request?, Error?) {
         if !parameterCheck() {
-            if delegate != nil {
-                delegate?.requestCompleted(result: .failure, output: nil, error: SKHTTPError.HTTP_PARAMETER)
-            }
-            return
+            return (nil, SKHTTPError.HTTP_PARAMETER)
         }
         
-        AF.request("\(HTTP_SERVER_ADDRESS)/user/login", method:.post, parameters: bodyParameter, encoder: .json, headers: getHeader()).responseString { response in
+        request = AF.request("\(HTTP_SERVER_ADDRESS)/user/login",requestModifier: { request in
+            request.method = .post
+            request.headers = self.getHeader()
+            request.httpBody = self.bodyParameter?.toJSONString()?.data(using: .utf8)
+        }).responseString(completionHandler: { response in
             switch response.result {
             case .success:
                 if self.delegate != nil {
-                    self.delegate?.requestCompleted(result: .success, output: nil, error: nil)
+                    let dataStr = response.value
+                    self.delegate?.requestCompleted(request:self.request!, result: .success, output: nil, error: nil)
                 }
             case let .failure(error):
                 if self.delegate != nil {
-                    self.delegate?.requestCompleted(result: .failure, output: nil, error: error)
+                    self.delegate?.requestCompleted(request:self.request!, result: .failure, output: nil, error: error)
                 }
             }
-        }
+        })
+        return (request, nil)
     }
     
     

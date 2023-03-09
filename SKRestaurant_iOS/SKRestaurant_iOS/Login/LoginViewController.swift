@@ -8,12 +8,16 @@
 import Foundation
 import UIKit
 import ProgressHUD
+import Alamofire
 
 class LoginViewController: UIViewController {
     
     @IBOutlet weak var userNameTextField: UITextField!
     
     @IBOutlet weak var passwordTextField: UITextField!
+    
+    var loginRequest:Request?
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
@@ -28,7 +32,11 @@ class LoginViewController: UIViewController {
         input.username = userNameTextField.text
         input.password = passwordTextField.text
         loginService.bodyParameter = input
-        loginService.startRequest()
+        var error:Error?
+        (loginRequest, error) = loginService.startRequest()
+        if error != nil {
+            ProgressHUD.showFailed(error!.localizedDescription, interaction: false)
+        }
         
     }
     
@@ -45,10 +53,12 @@ class LoginViewController: UIViewController {
 }
 
 extension LoginViewController: HttpServiceDelegate {
-    func requestCompleted(result: SKHttpRequestResult, output: Any?, error: Error?) {
+    func requestCompleted(request: Request, result: SKHttpRequestResult, output: Any?, error: Error?) {
         switch result {
         case .success:
-            toMainSplitView()
+            if request == loginRequest {
+                toMainSplitView()
+            }
         case .failure:
             ProgressHUD.showFailed(error?.localizedDescription, interaction: false)
         default:
