@@ -65,8 +65,8 @@ protocol HttpServiceProtocol {
 }
 
 class HttpService {
-    var queryParameter:HandyJSON?
-    var bodyParameter:HandyJSON?
+    var queryParameter:HttpParameter?
+    var bodyParameter:HttpParameter?
     weak var delegate:HttpServiceDelegate?
     
     func getHeader() -> HTTPHeaders {
@@ -91,11 +91,9 @@ class HttpService {
             headerStr = headerStr.appending(userToken)
         }
         
-        let queryParameterStr = queryParameter?.toJSONString()
         let bodyParameterStr = bodyParameter?.toJSONString()
         
-        let requestStr = String(format: "%@%@%@%@",
-                                queryParameterStr ?? "",
+        let requestStr = String(format: "%@%@%@",
                                 "skrestaurant_key",
                                 bodyParameterStr ?? "",
                                 headerStr
@@ -107,16 +105,21 @@ class HttpService {
     }
 }
 
+class HttpParameter:HandyJSON, Encodable {
+    required init() {
+        
+    }
+}
 
 
-struct UserLoginBodyParameter:HandyJSON,Encodable {
+class UserLoginBodyParameter:HttpParameter {
     var username:String?
     var password:String?
 }
 
 class UserLoginService:HttpService, HttpServiceProtocol {
     func parameterCheck() -> Bool {
-        if var bodyParameter = bodyParameter as? UserLoginBodyParameter {
+        if let bodyParameter = bodyParameter as? UserLoginBodyParameter {
             if let username = bodyParameter.username {
                 if username.count == 0 {
                     return false
@@ -142,7 +145,7 @@ class UserLoginService:HttpService, HttpServiceProtocol {
             return
         }
         
-        AF.request("\(HTTP_SERVER_ADDRESS)/user/login", method:.post, parameters: bodyParameter as? UserLoginBodyParameter, encoder: .json, headers: getHeader()).responseString { response in
+        AF.request("\(HTTP_SERVER_ADDRESS)/user/login", method:.post, parameters: bodyParameter, encoder: .json, headers: getHeader()).responseString { response in
             switch response.result {
             case .success:
                 if self.delegate != nil {

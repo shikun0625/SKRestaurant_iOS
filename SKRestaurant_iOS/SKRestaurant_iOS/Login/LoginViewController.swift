@@ -21,11 +21,12 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func loginPressed(_ sender: UIButton) {
-        
         ProgressHUD.show(nil, interaction: false)
         let loginService = UserLoginService()
         loginService.delegate = self
-        let input = UserLoginBodyParameter(username: userNameTextField.text, password: passwordTextField.text)
+        let input = UserLoginBodyParameter()
+        input.username = userNameTextField.text
+        input.password = passwordTextField.text
         loginService.bodyParameter = input
         loginService.startRequest()
         
