@@ -29,6 +29,7 @@ enum SKHttpRequestResult {
 
 public enum SKHTTPError: Int, Error {
     case HTTP_PARAMETER = 2501
+    case HTTP_SERVER_ERROR = 2502
 }
 
 extension SKHTTPError: CustomNSError {
@@ -44,6 +45,8 @@ extension SKHTTPError: CustomNSError {
         switch self {
         case .HTTP_PARAMETER:
             return [NSLocalizedDescriptionKey: "请求参数错误."]
+        case .HTTP_SERVER_ERROR:
+            return [NSLocalizedDescriptionKey: "服务器出错."]
         }
     }
 }
@@ -89,7 +92,7 @@ class HttpService {
         
         log(headerStr)
         
-        if let userToken = UserDefaults.sk_default.string(forKey: USER_DEFAULTS_USER_TOKEN) {
+        if let userToken = UserDefaults.sk_default.getToken() {
             header.add(name: "user_token", value: userToken)
             headerStr = headerStr.appending(userToken)
         }
@@ -102,11 +105,29 @@ class HttpService {
                                 headerStr
         )
         
+        log(requestStr)
+        
         header.add(name: "request_auth", value: (requestStr.md5()))
         
         return header
     }
 }
+
+class HttpServiceOutput:HandyJSON {
+    var status:Int?
+    var errorMessage:String?
+    required init() {
+        
+    }
+}
+
+class HttpServiceResp:HandyJSON {
+    
+    required init() {
+        
+    }
+}
+
 
 class HttpParameter:HandyJSON {
     required init() {
@@ -118,6 +139,15 @@ class HttpParameter:HandyJSON {
 class UserLoginBodyParameter:HttpParameter {
     var username:String?
     var password:String?
+}
+
+class UserLoginOutput:HttpServiceOutput {
+    var resp:UserLoginResp?
+}
+
+class UserLoginResp:HttpServiceResp {
+    var authToken:String?
+    var expiredTime:Int64?
 }
 
 class UserLoginService:HttpService, HttpServiceProtocol {
@@ -149,12 +179,17 @@ class UserLoginService:HttpService, HttpServiceProtocol {
             request.method = .post
             request.headers = self.getHeader()
             request.httpBody = self.bodyParameter?.toJSONString()?.data(using: .utf8)
-        }).responseString(completionHandler: { response in
+        }).responseData(completionHandler: { response in
             switch response.result {
             case .success:
                 if self.delegate != nil {
-                    let dataStr = response.value
-                    self.delegate?.requestCompleted(request:self.request!, result: .success, output: nil, error: nil)
+                    let dataStr = String(data: response.value!, encoding: .utf8)
+                    let output = UserLoginOutput.deserialize(from: dataStr)
+                    if output != nil && output?.status == 200 {
+                        self.delegate?.requestCompleted(request:self.request!, result: .success, output: output, error: nil)
+                    } else {
+                        self.delegate?.requestCompleted(request:self.request!, result: .failure, output: output, error: SKHTTPError.HTTP_SERVER_ERROR)
+                    }
                 }
             case let .failure(error):
                 if self.delegate != nil {

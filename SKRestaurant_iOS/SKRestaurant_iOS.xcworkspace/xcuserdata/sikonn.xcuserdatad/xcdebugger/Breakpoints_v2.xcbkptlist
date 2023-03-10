@@ -7,64 +7,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "DB289C48-69BE-4C9A-9965-53D69739FE1A"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "SKRestaurant_iOS/Networks/RestaurantServer.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "149"
-            endingLineNumber = "149"
-            landmarkName = "startRequest()"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "DB289C48-69BE-4C9A-9965-53D69739FE1A - 8440e47103d58f0a"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "SKRestaurant_iOS.UserLoginService.startRequest() -&gt; ()"
-                  moduleName = "SKRestaurant_iOS"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/sikonn/GitHub/SKRestaurant_iOS/SKRestaurant_iOS/SKRestaurant_iOS/Networks/RestaurantServer.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "150"
-                  endingLineNumber = "150"
-                  offsetFromSymbolStart = "633">
-               </Location>
-               <Location
-                  uuid = "DB289C48-69BE-4C9A-9965-53D69739FE1A - 88f8c86afe7bcdd4"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Alamofire.DataResponse&lt;Swift.String, Alamofire.AFError&gt;) -&gt; () in SKRestaurant_iOS.UserLoginService.startRequest() -&gt; ()"
-                  moduleName = "SKRestaurant_iOS"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/sikonn/GitHub/SKRestaurant_iOS/SKRestaurant_iOS/SKRestaurant_iOS/Networks/RestaurantServer.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "151"
-                  endingLineNumber = "151"
-                  offsetFromSymbolStart = "190">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "B5FEC08C-8344-46AF-B546-90E07206B68C"
+            uuid = "A9399BA7-4098-4774-9626-A212464CC6E5"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SKRestaurant_iOS/Login/LoginViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "49"
-            endingLineNumber = "49"
-            landmarkName = "requestCompleted(result:output:error:)"
+            startingLineNumber = "24"
+            endingLineNumber = "24"
+            landmarkName = "viewDidAppear(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

@@ -18,12 +18,14 @@ class SideMainViewController: UIViewController {
         tableView.dataSource = self
     
         title = Bundle.main.infoDictionary!["CFBundleDisplayName"] as? String
+        
     }
     
     @IBAction func logoutPressed(_ sender: UIButton) {
         let alertView = UIAlertController(title: "退出登录", message: "确定退出吗？", preferredStyle: .alert)
         
         alertView.addAction(UIAlertAction(title: "退出", style: .destructive, handler: { [self] action in
+            UserDefaults.sk_default.deleteToken()
             toLoginView()
         }))
         alertView.addAction(UIAlertAction(title: "取消", style: .cancel))

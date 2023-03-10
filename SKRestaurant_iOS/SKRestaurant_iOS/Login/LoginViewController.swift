@@ -21,7 +21,7 @@ class LoginViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        
+        var date = UserDefaults.sk_default.getExpiredDateTime()
     }
     
     @IBAction func loginPressed(_ sender: UIButton) {
@@ -57,10 +57,14 @@ extension LoginViewController: HttpServiceDelegate {
         switch result {
         case .success:
             if request == loginRequest {
+                let resultOutput:UserLoginOutput = output as! UserLoginOutput
+                UserDefaults.sk_default.setToken(token: resultOutput.resp!.authToken!)
+                UserDefaults.sk_default.setExpiredDateTime(date: Date(timeIntervalSince1970: Double((resultOutput.resp?.expiredTime)!) / 1000.0))
+                UserDefaults.sk_default.setUsername(username: userNameTextField.text!)
                 toMainSplitView()
             }
         case .failure:
-            ProgressHUD.showFailed(error?.localizedDescription, interaction: false)
+            ProgressHUD.showFailed(output == nil ? error?.localizedDescription : (output as! HttpServiceOutput).errorMessage, interaction: false)
         default:
             ProgressHUD.dismiss()
         }
