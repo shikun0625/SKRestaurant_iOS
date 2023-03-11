@@ -15,7 +15,7 @@ let HTTP_SERVER_ADDRESS:String = {
     if TARGET_OS_SIMULATOR != 0 {
         return "http://127.0.0.1:8080/SKRestaurant_Server"
     } else {
-        return "http://127.0.0.1:8080/SKRestaurant_Server"
+        return "http://192.168.0.131:8080/SKRestaurant_Server"
     }
 }()
 
@@ -77,10 +77,10 @@ class HttpService {
         var header = HTTPHeaders()
         header.add(name: "request_time", value: String(Date().milliTimeIntervalSince1970))
         header.add(name: "device_id", value: UIDevice.current.identifierForVendor!.uuidString)
-        header.add(name: "device", value: UIDevice.current.name)
+        header.add(name: "device", value: UIDevice.current.model)
         header.add(name: "os", value: UIDevice.current.systemName)
         header.add(name: "os_version", value: UIDevice.current.systemVersion)
-        header.add(name: "request_id", value: UUID().uuidString)
+        header.add(name: "request_id", value: UUID().uuidString.replacingOccurrences(of: "-", with: ""))
         
         var headerStr = String(format: "%@%@%@%@%@%@",
                                header["request_time"]!,
@@ -105,9 +105,11 @@ class HttpService {
                                 headerStr
         )
         
-        log(requestStr)
+        log("request string : \(requestStr)")
         
         header.add(name: "request_auth", value: (requestStr.md5()))
+        
+        log("request token : \(header["request_auth"] ?? "")")
         
         return header
     }

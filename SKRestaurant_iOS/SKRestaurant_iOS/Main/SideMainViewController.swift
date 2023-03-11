@@ -19,6 +19,7 @@ class SideMainViewController: UIViewController {
     
         title = Bundle.main.infoDictionary!["CFBundleDisplayName"] as? String
         
+        tableView.selectRow(at: IndexPath(row: 0, section: 0), animated: true, scrollPosition: .top)
     }
     
     @IBAction func logoutPressed(_ sender: UIButton) {
@@ -26,6 +27,7 @@ class SideMainViewController: UIViewController {
         
         alertView.addAction(UIAlertAction(title: "退出", style: .destructive, handler: { [self] action in
             UserDefaults.sk_default.deleteToken()
+            UserDefaults.sk_default.deleteExpiredDateTime()
             toLoginView()
         }))
         alertView.addAction(UIAlertAction(title: "取消", style: .cancel))
@@ -42,6 +44,10 @@ class SideMainViewController: UIViewController {
         } as! UIWindowScene
         
         scene.keyWindow?.rootViewController = vc
+    }
+    
+    private func showMateriel() -> Void {
+        NotificationCenter.default.post(.SKShowMaterielViewNotification)
     }
 }
 
@@ -132,15 +138,41 @@ extension SideMainViewController: UITableViewDelegate, UITableViewDataSource {
         return UITableViewCell()
     }
     
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        switch indexPath.section {
+        case 0:
+            do {}
+        case 1:
+            switch indexPath.row {
+            case 0:
+                do {}
+            case 1:
+                showMateriel()
+            case 2:
+                do {}
+            case 3:
+                do {}
+            case 4:
+                do {}
+            default:
+                do {}
+            }
+        case 2:
+            do {}
+        default:
+            break
+        }
+    }
 }
 
 
 class SideMainOrderTableCell: UITableViewCell {
-
+  
 }
 
 class SideMainSettingTableCell: UITableViewCell {
     @IBOutlet weak var icon: UIImageView!
     @IBOutlet weak var title_label: UILabel!
-    
+ 
 }

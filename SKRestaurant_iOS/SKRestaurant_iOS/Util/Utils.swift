@@ -20,6 +20,7 @@ extension Date {
 
 let USER_DEFAULTS_USER_TOKEN = "USER_DEFAULTS_USER_TOKEN"
 let USER_DEFAULTS_USER_NAME = "USER_DEFAULTS_USER_NAME"
+let USER_DEFAULTS_PASSWORD = "USER_DEFAULTS_PASSWORD"
 let USER_DEFAULTS_AUTH_EXPIRED_DATETIME = "USER_DEFAULTS_AUTH_EXPIRED_DATETIME"
 
 extension UserDefaults {
@@ -51,6 +52,18 @@ extension UserDefaults {
         return string(forKey: USER_DEFAULTS_USER_NAME)
     }
     
+    func setPassword(password:String) -> Void {
+        set(password, forKey: USER_DEFAULTS_PASSWORD)
+    }
+    
+    func deletePassword() -> Void {
+        removeObject(forKey: USER_DEFAULTS_PASSWORD)
+    }
+    
+    func getPassword() -> String? {
+        return string(forKey: USER_DEFAULTS_PASSWORD)
+    }
+    
     func setExpiredDateTime(date:Date) -> Void {
         set(date, forKey: USER_DEFAULTS_AUTH_EXPIRED_DATETIME)
     }
@@ -62,4 +75,12 @@ extension UserDefaults {
     func getExpiredDateTime() -> Date? {
         return object(forKey: USER_DEFAULTS_AUTH_EXPIRED_DATETIME) as? Date
     }
+}
+
+extension Notification {
+    public static let SKShowMaterielViewNotification = Notification(name: .SKShowMaterielViewNotificationName)
+}
+
+extension Notification.Name {
+    public static let SKShowMaterielViewNotificationName = Notification.Name("SKShowMaterielViewNotification")
 }

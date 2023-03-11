@@ -9,35 +9,81 @@ import Foundation
 import UIKit
 import ProgressHUD
 import Alamofire
+import LocalAuthentication
 
 class LoginViewController: UIViewController {
     
     @IBOutlet weak var userNameTextField: UITextField!
-    
     @IBOutlet weak var passwordTextField: UITextField!
+    @IBOutlet weak var loginButton: UIButton!
+    @IBOutlet weak var faceIdButton: UIButton!
     
     var loginRequest:Request?
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        var date = UserDefaults.sk_default.getExpiredDateTime()
+        userNameTextField.delegate = self
+        passwordTextField.delegate = self
+        
+        let username = UserDefaults.sk_default.getUsername()
+
+        if username != nil {
+            userNameTextField.text = username
+        }
+        
+        faceIdAuthentication()
+        
     }
     
     @IBAction func loginPressed(_ sender: UIButton) {
+        login(username: userNameTextField.text!, password: passwordTextField.text!)
+    }
+    
+    @IBAction func faceIdPressed(_ sender: UIButton) {
+       faceIdAuthentication()
+    }
+    
+    private func login(username:String, password:String) {
         ProgressHUD.show(nil, interaction: false)
         let loginService = UserLoginService()
         loginService.delegate = self
         let input = UserLoginBodyParameter()
-        input.username = userNameTextField.text
-        input.password = passwordTextField.text
+        input.username = username
+        input.password = password
         loginService.bodyParameter = input
         var error:Error?
         (loginRequest, error) = loginService.startRequest()
         if error != nil {
             ProgressHUD.showFailed(error!.localizedDescription, interaction: false)
         }
+    }
+    
+    private func faceIdAuthentication() {
+        let username = UserDefaults.sk_default.getUsername()
+        let passwrod = UserDefaults.sk_default.getPassword()
         
+        if username != nil && passwrod != nil {
+            let laContext = LAContext()
+            var error:NSError?;
+            if laContext.canEvaluatePolicy(.deviceOwnerAuthentication, error: &error) {
+                faceIdButton.isEnabled = true
+                laContext.localizedFallbackTitle = "请使用账号密码登录"
+                laContext.evaluatePolicy(.deviceOwnerAuthentication, localizedReason: "验证登录权限") { success, error in
+                    DispatchQueue.main.async {
+                        if success {
+                            self.passwordTextField.text = passwrod
+                            self.login(username: username!, password: passwrod!)
+                        } else {
+                            UserDefaults.sk_default.deletePassword()
+                            self.faceIdButton.isEnabled = false
+                        }
+                    }
+                }
+        } else {
+            faceIdButton.isEnabled = false
+            }
+        }
     }
     
     private func toMainSplitView() -> Void {
@@ -56,11 +102,13 @@ extension LoginViewController: HttpServiceDelegate {
     func requestCompleted(request: Request, result: SKHttpRequestResult, output: Any?, error: Error?) {
         switch result {
         case .success:
+            ProgressHUD.dismiss()
             if request == loginRequest {
                 let resultOutput:UserLoginOutput = output as! UserLoginOutput
                 UserDefaults.sk_default.setToken(token: resultOutput.resp!.authToken!)
                 UserDefaults.sk_default.setExpiredDateTime(date: Date(timeIntervalSince1970: Double((resultOutput.resp?.expiredTime)!) / 1000.0))
                 UserDefaults.sk_default.setUsername(username: userNameTextField.text!)
+                UserDefaults.sk_default.setPassword(password: passwordTextField.text!)
                 toMainSplitView()
             }
         case .failure:
@@ -70,3 +118,20 @@ extension LoginViewController: HttpServiceDelegate {
         }
     }
 }
+
+extension LoginViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        switch textField {
+        case userNameTextField:
+            passwordTextField.becomeFirstResponder()
+        case passwordTextField:
+            passwordTextField.resignFirstResponder()
+            loginPressed(loginButton)
+        default:
+            break
+        }
+        
+        return false
+    }
+}
+

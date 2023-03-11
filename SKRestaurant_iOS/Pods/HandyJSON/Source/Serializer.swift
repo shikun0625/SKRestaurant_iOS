@@ -38,11 +38,14 @@ public extension HandyJSON {
             if JSONSerialization.isValidJSONObject(anyObject) {
                 do {
                     let jsonData: Data
+                    var options:JSONSerialization.WritingOptions = []
                     if prettyPrint {
-                        jsonData = try JSONSerialization.data(withJSONObject: anyObject, options: [.prettyPrinted])
-                    } else {
-                        jsonData = try JSONSerialization.data(withJSONObject: anyObject, options: [])
+                        options.insert(.prettyPrinted)
                     }
+                    if #available(iOS 11.0, *) {
+                        options.insert(.sortedKeys)
+                    }
+                    jsonData = try JSONSerialization.data(withJSONObject: anyObject, options: options)
                     return String(data: jsonData, encoding: .utf8)
                 } catch let error {
                     InternalLogger.logError(error)
