@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 func log(_ item: Any, _ file: String = #file, _ line: Int = #line, _ function: String = #function) {
     print(file + ":\(line):" + function, item)
@@ -85,4 +86,23 @@ extension Notification {
 extension Notification.Name {
     public static let SKShowMaterielViewNotificationName = Notification.Name("SKShowMaterielViewNotification")
     public static let SKMaterielViewRefreshNotificationName = Notification.Name("SKMaterielViewRefreshNotificationName")
+}
+
+@IBDesignable class DesignableButton: UIButton {
+    @IBInspectable var cornerRadius: CGFloat {
+        get {
+            return layer.cornerRadius
+        }
+        set {
+            layer.cornerRadius = newValue
+        }
+    }
+    @IBInspectable var masksToBounds: Bool {
+        get {
+            return layer.masksToBounds
+        }
+        set {
+            layer.masksToBounds = newValue
+        }
+    }
 }

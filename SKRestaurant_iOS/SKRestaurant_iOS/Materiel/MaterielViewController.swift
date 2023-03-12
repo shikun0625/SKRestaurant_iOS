@@ -13,10 +13,13 @@ import MJRefresh
 
 class MaterielViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
-    
+    var materielsData:[Materiel] = []
     var getMaterielRequest:Request?
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        tableView.delegate = self
+        tableView.dataSource = self
         
         let header = MJRefreshNormalHeader {
             self.getMateriels()
@@ -57,12 +60,78 @@ extension MaterielViewController: HttpServiceDelegate {
             ProgressHUD.dismiss()
             if request == getMaterielRequest {
                 tableView.mj_header?.endRefreshing()
+                
+                let result = output as! GetMaterielOutput
+                self.materielsData = result.resp.materiels
+                self.tableView.reloadData()
             }
         case .failure:
             ProgressHUD.showFailed(output == nil ? error?.localizedDescription : (output as! HttpServiceOutput).errorMessage, interaction: false)
         default:
             ProgressHUD.dismiss()
         }
+    }
+    
+    
+}
+
+extension MaterielViewController: UITableViewDelegate, UITableViewDataSource {
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 80
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return materielsData.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell: MaterielTableViewCell = tableView.dequeueReusableCell(withIdentifier: "materielCell", for: indexPath) as! MaterielTableViewCell
+        let data = materielsData[indexPath.row]
+        cell.nameLabel.text = data.name
+        cell.typeLabel.text = {
+            switch data.type {
+            case 0:
+                return "可销售"
+            case 1:
+                return "不可销售"
+            case 2:
+                return "废弃"
+            default:
+                return "未知"
+            }
+        }()
+        cell.remarkLabel.text = data.remark
+        let unit:String = {
+            switch data.unit {
+            case 0:
+                return "份"
+            case 1:
+                return "块"
+            case 2:
+                return "瓶"
+            case 3:
+                return "碗"
+            case 4:
+                return "个"
+            case 5:
+                return "包"
+            case 6:
+                return "克"
+            case 7:
+                return "斤"
+            case 8:
+                return "箱"
+            default:
+                return "未知"
+            }
+        }()
+        cell.countLabel.text = "\(String(data.count!))\(unit)"
+        
+        cell.inputButton.isEnabled = data.type! < 2
+        cell.outputButton.isEnabled = data.type! < 2
+        
+        return cell
     }
     
     
@@ -214,3 +283,12 @@ extension MaterielAddViewController: HttpServiceDelegate {
     
 }
 
+class MaterielTableViewCell: UITableViewCell {
+    
+    @IBOutlet weak var outputButton: DesignableButton!
+    @IBOutlet weak var inputButton: DesignableButton!
+    @IBOutlet weak var remarkLabel: UILabel!
+    @IBOutlet weak var typeLabel: UILabel!
+    @IBOutlet weak var countLabel: UILabel!
+    @IBOutlet weak var nameLabel: UILabel!
+}
