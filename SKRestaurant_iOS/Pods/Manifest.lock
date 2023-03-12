@@ -3,6 +3,7 @@ PODS:
   - CryptoSwift (1.6.0)
   - HandyJSON (5.0.2)
   - IQKeyboardManagerSwift (6.5.10)
+  - MJRefresh (3.7.5)
   - ProgressHUD (13.6)
   - SwiftyJSON (5.0.1)
 
@@ -11,6 +12,7 @@ DEPENDENCIES:
   - CryptoSwift (~> 1.6.0)
   - HandyJSON (~> 5.0.2)
   - IQKeyboardManagerSwift (~> 6.5.10)
+  - MJRefresh (~> 3.7.5)
   - ProgressHUD (~> 13.6)
   - SwiftyJSON (~> 5.0.1)
 
@@ -20,6 +22,7 @@ SPEC REPOS:
     - CryptoSwift
     - HandyJSON
     - IQKeyboardManagerSwift
+    - MJRefresh
     - ProgressHUD
     - SwiftyJSON
 
@@ -28,9 +31,10 @@ SPEC CHECKSUMS:
   CryptoSwift: 562f8eceb40e80796fffc668b0cad9313284cfa6
   HandyJSON: 9e4e236f5d2dbefad5155a77417bbea438201c03
   IQKeyboardManagerSwift: 52962c76ab33532f15ad9f3ff4e5715eda5335bb
+  MJRefresh: fdf5e979eb406a0341468932d1dfc8b7f9fce961
   ProgressHUD: 4bdaa0d2ddf676b23324b199f9facffb5c3a1620
   SwiftyJSON: 2f33a42c6fbc52764d96f13368585094bfd8aa5e
 
-PODFILE CHECKSUM: 870659a538436a293739075e490bf8a2a33f91c0
+PODFILE CHECKSUM: d7142807122e8da9995fa5dde56f9b0188e652aa
 
-COCOAPODS: 1.11.3
+COCOAPODS: 1.12.0

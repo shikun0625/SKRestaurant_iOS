@@ -62,16 +62,18 @@ extension HttpServiceDelegate {
     }
 }
 
-protocol HttpServiceProtocol {
-    func startRequest() -> (Request?, Error?)
-    func parameterCheck() -> Bool
-}
-
 class HttpService {
+    var responseType = HandyJSON.self
     var request:Request?
     var queryParameter:HttpParameter?
     var bodyParameter:HttpParameter?
     weak var delegate:HttpServiceDelegate?
+    
+    init(queryParameter: HttpParameter? = nil, bodyParameter: HttpParameter? = nil, delegate: HttpServiceDelegate? = nil) {
+        self.queryParameter = queryParameter
+        self.bodyParameter = bodyParameter
+        self.delegate = delegate
+    }
     
     func getHeader() -> HTTPHeaders {
         var header = HTTPHeaders()
@@ -152,7 +154,7 @@ class UserLoginResp:HttpServiceResp {
     var expiredTime:Int64?
 }
 
-class UserLoginService:HttpService, HttpServiceProtocol {
+class UserLoginService:HttpService {
     func parameterCheck() -> Bool {
         if let bodyParameter = bodyParameter as? UserLoginBodyParameter {
             if let username = bodyParameter.username {
@@ -172,7 +174,7 @@ class UserLoginService:HttpService, HttpServiceProtocol {
         return false
     }
     
-    func startRequest() -> (Request?, Error?) {
+    func startLogin() -> (Request?, Error?) {
         if !parameterCheck() {
             return (nil, SKHTTPError.HTTP_PARAMETER)
         }
@@ -187,6 +189,8 @@ class UserLoginService:HttpService, HttpServiceProtocol {
                 if self.delegate != nil {
                     let dataStr = String(data: response.value!, encoding: .utf8)
                     let output = UserLoginOutput.deserialize(from: dataStr)
+                    log(response.request?.url?.absoluteString as Any)
+                    log("response data : \(dataStr ?? "")")
                     if output != nil && output?.status == 200 {
                         self.delegate?.requestCompleted(request:self.request!, result: .success, output: output, error: nil)
                     } else {
@@ -203,4 +207,93 @@ class UserLoginService:HttpService, HttpServiceProtocol {
     }
     
     
+}
+
+class GetMaterielOutput: HttpServiceOutput {
+    var resp = GetMaterielResp()
+    
+}
+
+class GetMaterielResp: HttpServiceResp {
+    var materiels:[Materiel] = []
+   
+}
+
+class Materiel: HandyJSON {
+    var id:Int?
+    var name:String?
+    var type:Int?
+    var unit:Int?
+    var remark:String?
+    var count:Int?
+    
+    required init() {
+        
+    }
+}
+
+class CreateMaterielInput:HttpParameter {
+    var name:String?
+    var remark:String?
+    var type:Int?
+    var unit:Int?
+}
+
+class MaterielService:HttpService {
+    
+    func getMateriels() -> (Alamofire.Request?, Error?) {
+        request = AF.request("\(HTTP_SERVER_ADDRESS)/materiel",requestModifier: { request in
+            request.method = .get
+            request.headers = self.getHeader()
+        }).responseData(completionHandler: { response in
+            switch response.result {
+            case .success:
+                if self.delegate != nil {
+                    let dataStr = String(data: response.value!, encoding: .utf8)
+                    log(response.request?.url?.absoluteString as Any)
+                    log("response data : \(dataStr ?? "")")
+                    let output = GetMaterielOutput.deserialize(from: dataStr)
+                    if output != nil && output?.status == 200 {
+                        self.delegate?.requestCompleted(request:self.request!, result: .success, output: output, error: nil)
+                    } else {
+                        self.delegate?.requestCompleted(request:self.request!, result: .failure, output: output, error: SKHTTPError.HTTP_SERVER_ERROR)
+                    }
+                }
+            case let .failure(error):
+                if self.delegate != nil {
+                    self.delegate?.requestCompleted(request:self.request!, result: .failure, output: nil, error: error)
+                }
+            }
+        })
+        return (request, nil)
+    }
+    
+    func createMateriel() -> (Alamofire.Request?, Error?) {
+        request = AF.request("\(HTTP_SERVER_ADDRESS)/materiel",requestModifier: { request in
+            request.method = .post
+            request.headers = self.getHeader()
+            let bodyJson = self.bodyParameter?.toJSONString()
+            request.httpBody = bodyJson?.data(using: .utf8)
+        }).responseData(completionHandler: { response in
+            switch response.result {
+            case .success:
+                if self.delegate != nil {
+                    let dataStr = String(data: response.value!, encoding: .utf8)
+                    log(response.request?.url?.absoluteString as Any)
+                    log("response data : \(dataStr ?? "")")
+                    let output = HttpServiceOutput.deserialize(from: dataStr)
+                    if output != nil && output?.status == 200 {
+                        self.delegate?.requestCompleted(request:self.request!, result: .success, output: output, error: nil)
+                    } else {
+                        self.delegate?.requestCompleted(request:self.request!, result: .failure, output: output, error: SKHTTPError.HTTP_SERVER_ERROR)
+                    }
+                }
+            case let .failure(error):
+                if self.delegate != nil {
+                    self.delegate?.requestCompleted(request:self.request!, result: .failure, output: nil, error: error)
+                }
+            }
+        })
+        return (request, nil)
+    }
 }

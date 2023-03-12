@@ -46,14 +46,11 @@ class LoginViewController: UIViewController {
     
     private func login(username:String, password:String) {
         ProgressHUD.show(nil, interaction: false)
-        let loginService = UserLoginService()
-        loginService.delegate = self
         let input = UserLoginBodyParameter()
         input.username = username
         input.password = password
-        loginService.bodyParameter = input
         var error:Error?
-        (loginRequest, error) = loginService.startRequest()
+        (loginRequest, error) = UserLoginService(bodyParameter: input, delegate: self).startLogin()
         if error != nil {
             ProgressHUD.showFailed(error!.localizedDescription, interaction: false)
         }

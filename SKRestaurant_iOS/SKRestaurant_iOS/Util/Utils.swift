@@ -79,8 +79,10 @@ extension UserDefaults {
 
 extension Notification {
     public static let SKShowMaterielViewNotification = Notification(name: .SKShowMaterielViewNotificationName)
+    public static let SKMaterielViewRefreshNotification = Notification(name: .SKMaterielViewRefreshNotificationName)
 }
 
 extension Notification.Name {
     public static let SKShowMaterielViewNotificationName = Notification.Name("SKShowMaterielViewNotification")
+    public static let SKMaterielViewRefreshNotificationName = Notification.Name("SKMaterielViewRefreshNotificationName")
 }

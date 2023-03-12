@@ -13,5 +13,5 @@ target 'SKRestaurant_iOS' do
   pod 'SwiftyJSON', '~> 5.0.1'
   pod 'CryptoSwift', '~> 1.6.0'
   pod 'ProgressHUD', '~> 13.6'
-  
+  pod 'MJRefresh', '~> 3.7.5'
 end
