@@ -40,6 +40,13 @@ class MaterielViewController: UIViewController {
         NotificationCenter.default.removeObserver(self, name: .SKMaterielViewRefreshNotificationName, object: nil)
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.destination is MaterielEditViewController {
+            let destination = segue.destination as! MaterielEditViewController
+            destination.materielInfo = (sender as! Materiel)
+        }
+    }
+    
     @objc func refresh(notification:Notification) -> Void {
         tableView.mj_header?.beginRefreshing()
     }
@@ -89,44 +96,9 @@ extension MaterielViewController: UITableViewDelegate, UITableViewDataSource {
         let cell: MaterielTableViewCell = tableView.dequeueReusableCell(withIdentifier: "materielCell", for: indexPath) as! MaterielTableViewCell
         let data = materielsData[indexPath.row]
         cell.nameLabel.text = data.name
-        cell.typeLabel.text = {
-            switch data.type {
-            case 0:
-                return "可销售"
-            case 1:
-                return "不可销售"
-            case 2:
-                return "废弃"
-            default:
-                return "未知"
-            }
-        }()
+        cell.typeLabel.text = convertMaterielTypeToString(type: data.type!)
         cell.remarkLabel.text = data.remark
-        let unit:String = {
-            switch data.unit {
-            case 0:
-                return "份"
-            case 1:
-                return "块"
-            case 2:
-                return "瓶"
-            case 3:
-                return "碗"
-            case 4:
-                return "个"
-            case 5:
-                return "包"
-            case 6:
-                return "克"
-            case 7:
-                return "斤"
-            case 8:
-                return "箱"
-            default:
-                return "未知"
-            }
-        }()
-        cell.countLabel.text = "\(String(data.count!))\(unit)"
+        cell.countLabel.text = "\(String(data.count!))\(convertUnitToString(unit: data.unit!))"
         
         cell.inputButton.isEnabled = data.type! < 2
         cell.outputButton.isEnabled = data.type! < 2
@@ -134,7 +106,30 @@ extension MaterielViewController: UITableViewDelegate, UITableViewDataSource {
         return cell
     }
     
-    
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let invalidAction:UIContextualAction?
+        let data = materielsData[indexPath.row]
+        switch data.type {
+        case 2:
+            // 无效状态
+            invalidAction = UIContextualAction(style: .destructive, title: "有效") { action, sourceView, completionHandler in
+                completionHandler(true)
+            }
+            invalidAction?.backgroundColor = .green
+        default:
+            // 有效状态
+            invalidAction = UIContextualAction(style: .destructive, title: "无效") { action, sourceView, completionHandler in
+                completionHandler(true)
+            }
+        }
+        let editAction = UIContextualAction(style: .normal, title: "编辑") { action, sourceView, completionHandler in
+            self.performSegue(withIdentifier: "toEditView", sender: self.materielsData[indexPath.row])
+            completionHandler(true)
+        }
+        
+        
+        return UISwipeActionsConfiguration(actions: [editAction, invalidAction!])
+    }
 }
 
 
@@ -154,87 +149,32 @@ class MaterielAddViewController: UIViewController {
         
         unitButton.menu = {
             var actions:[UIAction] = []
-            var action = UIAction(title: "份", handler: { action in
-                self.unitButton.setTitle(action.title, for: .normal)
-                self.selectedUnit = 0
-            })
-            actions.append(action)
-            
-            action = UIAction(title: "块", handler: { action in
-                self.unitButton.setTitle(action.title, for: .normal)
-                self.selectedUnit = 1
-            })
-            actions.append(action)
-            
-            action = UIAction(title: "瓶", handler: { action in
-                self.unitButton.setTitle(action.title, for: .normal)
-                self.selectedUnit = 2
-            })
-            actions.append(action)
-            
-            action = UIAction(title: "碗", handler: { action in
-                self.unitButton.setTitle(action.title, for: .normal)
-                self.selectedUnit = 3
-            })
-            actions.append(action)
-            
-            action = UIAction(title: "个", handler: { action in
-                self.unitButton.setTitle(action.title, for: .normal)
-                self.selectedUnit = 4
-            })
-            actions.append(action)
-            
-            action = UIAction(title: "包", handler: { action in
-                self.unitButton.setTitle(action.title, for: .normal)
-                self.selectedUnit = 5
-            })
-            actions.append(action)
-            
-            action = UIAction(title: "克", handler: { action in
-                self.unitButton.setTitle(action.title, for: .normal)
-                self.selectedUnit = 6
-            })
-            actions.append(action)
-            
-            action = UIAction(title: "斤", handler: { action in
-                self.unitButton.setTitle(action.title, for: .normal)
-                self.selectedUnit = 7
-            })
-            actions.append(action)
-            
-            action = UIAction(title: "箱", handler: { action in
-                self.unitButton.setTitle(action.title, for: .normal)
-                self.selectedUnit = 8
-            })
-            actions.append(action)
+            for i in 0...8 {
+                let action = UIAction(title: convertUnitToString(unit: i), handler: { action in
+                    self.unitButton.setTitle(action.title, for: .normal)
+                    self.selectedUnit = i
+                })
+                actions.append(action)
+            }
             
             return UIMenu(children: actions)
         }()
         
         typeButton.menu = {
             var actions:[UIAction] = []
-            var action = UIAction(title: "可销售", handler: { action in
-                self.typeButton.setTitle(action.title, for: .normal)
-                self.selectedType = 0
-            })
-            actions.append(action)
-            
-            action = UIAction(title: "不可销售", handler: { action in
-                self.typeButton.setTitle(action.title, for: .normal)
-                self.selectedType = 1
-            })
-            actions.append(action)
+            for i in 0...1 {
+                let action = UIAction(title: convertMaterielTypeToString(type: i), handler: { action in
+                    self.typeButton.setTitle(action.title, for: .normal)
+                    self.selectedType = i
+                })
+                actions.append(action)
+            }
             
             return UIMenu(children: actions)
             
         }()
     }
-    
-    private func checkConformButtonStatus() -> Void {
-        let name = nameTextField.text
-        conformButton.isEnabled = name!.count > 0 && selectedUnit != nil && selectedType != nil
-    }
-    
+
     @IBAction func conformPressed(_ sender: UIButton) {
         errorMessageLabel.text = ""
         if nameTextField.text?.count == 0 {
@@ -279,8 +219,6 @@ extension MaterielAddViewController: HttpServiceDelegate {
             ProgressHUD.dismiss()
         }
     }
-    
-    
 }
 
 class MaterielTableViewCell: UITableViewCell {
@@ -291,4 +229,63 @@ class MaterielTableViewCell: UITableViewCell {
     @IBOutlet weak var typeLabel: UILabel!
     @IBOutlet weak var countLabel: UILabel!
     @IBOutlet weak var nameLabel: UILabel!
+}
+
+
+class MaterielEditViewController: UIViewController {
+    
+    @IBOutlet weak var errorMessageLabel: UILabel!
+    @IBOutlet weak var remarkTextField: UITextField!
+    @IBOutlet weak var nameTextField: UITextField!
+    @IBOutlet weak var unitButton: UIButton!
+    
+    var materielInfo: Materiel?
+    
+    private var updateMaterielRequest:Request?
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        nameTextField.text = materielInfo?.name
+        
+        unitButton.menu = {
+            var actions:[UIAction] = []
+            
+            for i in 0...8 {
+                let action = UIAction(title: convertUnitToString(unit: i), handler: { action in
+                    self.unitButton.setTitle(action.title, for: .normal)
+                    self.materielInfo?.unit = i
+                })
+                actions.append(action)
+            }
+            
+            return UIMenu(children: actions)
+        }()
+        
+        unitButton.setTitle(convertUnitToString(unit: (materielInfo?.unit)!), for: .normal)
+    }
+    
+    @IBAction func conformPressed(_ sender: UIButton) {
+        errorMessageLabel.text = ""
+        if nameTextField.text?.count == 0 {
+            errorMessageLabel.text = "请输入名称"
+            return
+        }
+   
+        ProgressHUD.show(nil, interaction: false)
+        let input = UpdateMaterielInput()
+        input.id = materielInfo?.id
+        input.name = nameTextField.text
+        input.unit = materielInfo?.unit
+        input.type = materielInfo?.type
+        input.remark = remarkTextField.text
+        var error:Error?
+        (updateMaterielRequest, error) = MaterielService(bodyParameter: input, delegate: self).updateMateriel()
+        if error != nil {
+            ProgressHUD.showError(error?.localizedDescription, interaction: false)
+        }
+    }
+}
+
+extension MaterielEditViewController: HttpServiceDelegate {
+    
 }

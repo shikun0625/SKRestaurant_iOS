@@ -9,7 +9,55 @@ import Foundation
 import UIKit
 
 func log(_ item: Any, _ file: String = #file, _ line: Int = #line, _ function: String = #function) {
+    objc_sync_enter(item)
     print(file + ":\(line):" + function, item)
+    objc_sync_exit(item)
+}
+
+func convertUnitToString(unit:Int) -> String {
+    objc_sync_enter(unit)
+    var result:String = "未知"
+    switch unit {
+    case 0:
+        result = "份"
+    case 1:
+        result = "块"
+    case 2:
+        result = "瓶"
+    case 3:
+        result = "碗"
+    case 4:
+        result = "个"
+    case 5:
+        result = "包"
+    case 6:
+        result = "克"
+    case 7:
+        result = "斤"
+    case 8:
+        result = "箱"
+    default:
+        result = "未知"
+    }
+    objc_sync_exit(unit)
+    return result
+}
+
+func convertMaterielTypeToString(type:Int) -> String {
+    objc_sync_enter(type)
+    var result:String = "未知"
+    switch type {
+    case 0:
+        result = "可销售"
+    case 1:
+        result = "不可销售"
+    case 2:
+        result = "已废弃"
+    default:
+        result = "未知"
+    }
+    objc_sync_exit(type)
+    return result
 }
 
 extension Date {
