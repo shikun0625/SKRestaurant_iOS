@@ -51,12 +51,43 @@ func convertMaterielTypeToString(type:Int) -> String {
         result = "可销售"
     case 1:
         result = "不可销售"
-    case 2:
-        result = "已废弃"
     default:
-        result = "未知"
+        break
     }
     objc_sync_exit(type)
+    return result
+}
+
+func converMaterielActionReasonToString(actionType:Int, reason:Int) -> String {
+    objc_sync_enter(actionType)
+    var result:String = "未知"
+    switch actionType {
+    case 0:
+        switch reason {
+        case 0:
+            result = "购入"
+        case 1:
+            result = "制作"
+        case 2:
+            result = "退货"
+        default:
+            break
+        }
+    case 1:
+        switch reason {
+        case 0:
+            result = "制作"
+        case 1:
+            result = "销售"
+        case 2:
+            result = "报废"
+        default:
+            break
+        }
+    default:
+        break
+    }
+    objc_sync_exit(actionType)
     return result
 }
 
@@ -128,12 +159,15 @@ extension UserDefaults {
 
 extension Notification {
     public static let SKShowMaterielViewNotification = Notification(name: .SKShowMaterielViewNotificationName)
-    public static let SKMaterielViewRefreshNotification = Notification(name: .SKMaterielViewRefreshNotificationName)
+    public static let SKShowMealsViewNotification = Notification(name: .SKShowMealsViewNotification)
 }
 
 extension Notification.Name {
     public static let SKShowMaterielViewNotificationName = Notification.Name("SKShowMaterielViewNotification")
-    public static let SKMaterielViewRefreshNotificationName = Notification.Name("SKMaterielViewRefreshNotificationName")
+    public static let SKShowMealsViewNotification = Notification.Name("SKShowMealsViewNotification")
+    
+    public static let SKMaterielAddedNotificationName = Notification.Name("SKMaterielAddedNotificationName")
+    public static let SKMaterielUpdatedNotificationName = Notification.Name("SKMaterielUpdatedNotificationName")
 }
 
 @IBDesignable class DesignableButton: UIButton {

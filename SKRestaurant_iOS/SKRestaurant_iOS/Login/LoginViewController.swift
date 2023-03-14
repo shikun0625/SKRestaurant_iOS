@@ -18,8 +18,6 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var faceIdButton: UIButton!
     
-    var loginRequest:Request?
-    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
@@ -49,8 +47,7 @@ class LoginViewController: UIViewController {
         let input = UserLoginBodyParameter()
         input.username = username
         input.password = password
-        var error:Error?
-        (loginRequest, error) = UserLoginService(bodyParameter: input, delegate: self).startLogin()
+        var error = UserLoginService(bodyParameter: input, delegate: self).startLogin()
         if error != nil {
             ProgressHUD.showFailed(error!.localizedDescription, interaction: false)
         }
@@ -96,11 +93,11 @@ class LoginViewController: UIViewController {
 }
 
 extension LoginViewController: HttpServiceDelegate {
-    func requestCompleted(request: Request, result: SKHttpRequestResult, output: Any?, error: Error?) {
+    func requestCompleted(service: SKHTTPService, result: SKHttpRequestResult, output: Any?, error: Error?, sender: Any?) {
         switch result {
         case .success:
             ProgressHUD.dismiss()
-            if request == loginRequest {
+            if service == SKHTTPService.UserLogin {
                 let resultOutput:UserLoginOutput = output as! UserLoginOutput
                 UserDefaults.sk_default.setToken(token: resultOutput.resp!.authToken!)
                 UserDefaults.sk_default.setExpiredDateTime(date: Date(timeIntervalSince1970: Double((resultOutput.resp?.expiredTime)!) / 1000.0))

@@ -49,6 +49,10 @@ class SideMainViewController: UIViewController {
     private func showMateriel() -> Void {
         NotificationCenter.default.post(.SKShowMaterielViewNotification)
     }
+    
+    private func showMeals() -> Void {
+        NotificationCenter.default.post(.SKShowMealsViewNotification)
+    }
 }
 
 extension SideMainViewController: UITableViewDelegate, UITableViewDataSource {
@@ -146,7 +150,7 @@ extension SideMainViewController: UITableViewDelegate, UITableViewDataSource {
         case 1:
             switch indexPath.row {
             case 0:
-                do {}
+                showMeals()
             case 1:
                 showMateriel()
             case 2:
