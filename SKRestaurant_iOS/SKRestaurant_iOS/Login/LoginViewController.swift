@@ -47,7 +47,7 @@ class LoginViewController: UIViewController {
         let input = UserLoginBodyParameter()
         input.username = username
         input.password = password
-        var error = UserLoginService(bodyParameter: input, delegate: self).startLogin()
+        var error = UserService(bodyParameter: input, delegate: self).startLogin()
         if error != nil {
             ProgressHUD.showFailed(error!.localizedDescription, interaction: false)
         }
@@ -97,8 +97,8 @@ extension LoginViewController: HttpServiceDelegate {
         switch result {
         case .success:
             ProgressHUD.dismiss()
-            if service == SKHTTPService.UserLogin {
-                let resultOutput:UserLoginOutput = output as! UserLoginOutput
+            if service == .UserLogin {
+                let resultOutput = output as! UserLoginOutput
                 UserDefaults.sk_default.setToken(token: resultOutput.resp!.authToken!)
                 UserDefaults.sk_default.setExpiredDateTime(date: Date(timeIntervalSince1970: Double((resultOutput.resp?.expiredTime)!) / 1000.0))
                 UserDefaults.sk_default.setUsername(username: userNameTextField.text!)

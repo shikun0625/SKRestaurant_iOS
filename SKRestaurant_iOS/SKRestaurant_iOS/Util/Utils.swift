@@ -43,6 +43,42 @@ func convertUnitToString(unit:Int) -> String {
     return result
 }
 
+func convertMealsStatusToString(status:Int) -> String {
+    objc_sync_enter(status)
+    var result:String = "未知"
+    switch status {
+    case 0:
+        result = "在售"
+    case 1:
+        result = "下架"
+    default:
+        break
+    }
+    objc_sync_exit(status)
+    return result
+}
+
+func convertMealsTypeToString(type:Int) -> String {
+    objc_sync_enter(type)
+    var result:String = "未知"
+    switch type {
+    case 0:
+        result = "面类"
+    case 1:
+        result = "浇头"
+    case 2:
+        result = "套餐"
+    case 3:
+        result = "饮品"
+    case 4:
+        result = "其他"
+    default:
+        break
+    }
+    objc_sync_exit(type)
+    return result
+}
+
 func convertMaterielTypeToString(type:Int) -> String {
     objc_sync_enter(type)
     var result:String = "未知"
@@ -58,7 +94,7 @@ func convertMaterielTypeToString(type:Int) -> String {
     return result
 }
 
-func converMaterielActionReasonToString(actionType:Int, reason:Int) -> String {
+func convertMaterielActionReasonToString(actionType:Int, reason:Int) -> String {
     objc_sync_enter(actionType)
     var result:String = "未知"
     switch actionType {
@@ -159,15 +195,19 @@ extension UserDefaults {
 
 extension Notification {
     public static let SKShowMaterielViewNotification = Notification(name: .SKShowMaterielViewNotificationName)
-    public static let SKShowMealsViewNotification = Notification(name: .SKShowMealsViewNotification)
+    public static let SKShowMealsViewNotification = Notification(name: .SKShowMealsViewNotificationName)
+    public static let SKShowOrderViewNotification = Notification(name: .SKShowOrderViewNotificationName)
 }
 
 extension Notification.Name {
     public static let SKShowMaterielViewNotificationName = Notification.Name("SKShowMaterielViewNotification")
-    public static let SKShowMealsViewNotification = Notification.Name("SKShowMealsViewNotification")
+    public static let SKShowMealsViewNotificationName = Notification.Name("SKShowMealsViewNotificationName")
+    public static let SKShowOrderViewNotificationName = Notification.Name("SKShowOrderViewNotificationName")
     
     public static let SKMaterielAddedNotificationName = Notification.Name("SKMaterielAddedNotificationName")
     public static let SKMaterielUpdatedNotificationName = Notification.Name("SKMaterielUpdatedNotificationName")
+    public static let SKMealsAddedNotificationName = Notification.Name("SKMealsAddedNotificationName")
+    public static let SKMealsUpdatedNotificationName = Notification.Name("SKMealsUpdatedNotificationName")
 }
 
 @IBDesignable class DesignableButton: UIButton {

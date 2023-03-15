@@ -53,6 +53,10 @@ class SideMainViewController: UIViewController {
     private func showMeals() -> Void {
         NotificationCenter.default.post(.SKShowMealsViewNotification)
     }
+    
+    private func showOrder() -> Void {
+        NotificationCenter.default.post(.SKShowOrderViewNotification)
+    }
 }
 
 extension SideMainViewController: UITableViewDelegate, UITableViewDataSource {
@@ -146,7 +150,7 @@ extension SideMainViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch indexPath.section {
         case 0:
-            do {}
+            showOrder()
         case 1:
             switch indexPath.row {
             case 0:

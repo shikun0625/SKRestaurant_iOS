@@ -12,7 +12,6 @@ import ProgressHUD
 import MJRefresh
 import IQKeyboardManagerSwift
 
-//MARK: - MaterielViewController
 class MaterielViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     private var materielsData:[Materiel] = []
@@ -76,7 +75,7 @@ class MaterielViewController: UIViewController {
     func getMateriels() -> Void {
         let error = MaterielService(delegate: self).getMateriels()
         if error != nil {
-            
+            tableView.mj_header?.endRefreshing()
         }
     }
 }
@@ -89,8 +88,8 @@ extension MaterielViewController: HttpServiceDelegate {
             if service == .GetMateriels {
                 tableView.mj_header?.endRefreshing()
                 let result = output as! GetMaterielOutput
-                self.materielsData = result.resp.materiels
-                self.tableView.reloadData()
+                materielsData = result.resp.materiels
+                tableView.reloadData()
             } else if service == .UpdateMateriel {
                 ProgressHUD.dismiss()
                 let indexPath:IndexPath = sender as! IndexPath
@@ -192,95 +191,6 @@ extension MaterielViewController: MaterielTableViewCellDelegate {
     }
 }
 
-//MARK: - MaterielAddViewController
-class MaterielAddViewController: UIViewController {
-    @IBOutlet weak var unitButton: UIButton!
-    @IBOutlet weak var typeButton: UIButton!
-    @IBOutlet weak var remarkTextField: UITextField!
-    @IBOutlet weak var nameTextField: UITextField!
-    @IBOutlet weak var errorMessageLabel: UILabel!
-    private var selectedUnit:Int?
-    private var selectedType:Int?
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        unitButton.menu = {
-            var actions:[UIAction] = []
-            for i in 0...8 {
-                let action = UIAction(title: convertUnitToString(unit: i), handler: { [unowned self] action in
-                    self.unitButton.setTitle(action.title, for: .normal)
-                    self.selectedUnit = i
-                })
-                actions.append(action)
-            }
-            
-            return UIMenu(children: actions)
-        }()
-        
-        typeButton.menu = {
-            var actions:[UIAction] = []
-            for i in 0...1 {
-                let action = UIAction(title: convertMaterielTypeToString(type: i), handler: { [unowned self] action in
-                    self.typeButton.setTitle(action.title, for: .normal)
-                    self.selectedType = i
-                })
-                actions.append(action)
-            }
-            
-            return UIMenu(children: actions)
-            
-        }()
-    }
-    
-    @IBAction func conformPressed(_ sender: UIButton) {
-        IQKeyboardManager.shared.resignFirstResponder()
-        errorMessageLabel.text = ""
-        if nameTextField.text?.count == 0 {
-            errorMessageLabel.text = "请输入名称"
-            return
-        }
-        if selectedUnit == nil {
-            errorMessageLabel.text = "请选择单位"
-            return
-        }
-        if selectedType == nil {
-            errorMessageLabel.text = "请选择类型"
-            return
-        }
-        ProgressHUD.show(nil, interaction: false)
-        let input = CreateMaterielInput()
-        input.name = nameTextField.text
-        input.unit = selectedUnit
-        input.type = selectedType
-        input.remark = remarkTextField.text
-        let error = MaterielService(bodyParameter: input, delegate: self).createMateriel()
-        if error != nil {
-            ProgressHUD.showError(error?.localizedDescription, interaction: false)
-        }
-    }
-}
-
-extension MaterielAddViewController: HttpServiceDelegate {
-    func requestCompleted(service: SKHTTPService, result: SKHttpRequestResult, output: Any?, error: Error?, sender: Any?) {
-        switch result {
-        case .success:
-            ProgressHUD.dismiss()
-            if service == .CreateMateriel {
-                dismiss(animated: true) {
-                    let resp = (output as! CreateMaterielOutput).resp
-                    NotificationCenter.default.post(Notification(name: .SKMaterielAddedNotificationName, object: resp))
-                }
-            }
-        case .failure:
-            ProgressHUD.showFailed(output == nil ? error?.localizedDescription : (output as! HttpServiceOutput).errorMessage, interaction: false)
-        default:
-            ProgressHUD.dismiss()
-        }
-    }
-}
-
-//MARK: - MaterielTableViewCell
 protocol MaterielTableViewCellDelegate: AnyObject{
     func outputOrInput(actionType:Int, indexPath:IndexPath) -> Void
 }
@@ -312,152 +222,4 @@ class MaterielTableViewCell: UITableViewCell {
         }
     }
     
-}
-
-//MARK: - MaterielEditViewController
-class MaterielEditViewController: UIViewController {
-    
-    @IBOutlet weak var remarkTextField: UITextField!
-    @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var unitButton: UIButton!
-    
-    var materielInfo: Materiel?
-    var indexPath:IndexPath?
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        nameLabel.text = materielInfo?.name
-        remarkTextField.text = materielInfo?.remark
-        unitButton.menu = {
-            var actions:[UIAction] = []
-            
-            for i in 0...8 {
-                let action = UIAction(title: convertUnitToString(unit: i), handler: { [unowned self] action in
-                    self.unitButton.setTitle(action.title, for: .normal)
-                    self.materielInfo?.unit = i
-                })
-                actions.append(action)
-            }
-            
-            return UIMenu(children: actions)
-        }()
-        
-        unitButton.setTitle(convertUnitToString(unit: (materielInfo?.unit)!), for: .normal)
-    }
-    
-    @IBAction func conformPressed(_ sender: UIButton) {
-        IQKeyboardManager.shared.resignFirstResponder()
-        ProgressHUD.show(nil, interaction: false)
-        let input = UpdateMaterielInput()
-        input.id = materielInfo?.id
-        input.name = nameLabel.text
-        input.unit = materielInfo?.unit
-        input.type = materielInfo?.type
-        input.remark = remarkTextField.text
-        let error = MaterielService(bodyParameter: input, delegate: self).updateMateriel()
-        if error != nil {
-            ProgressHUD.showError(error?.localizedDescription, interaction: false)
-        }
-    }
-}
-
-extension MaterielEditViewController: HttpServiceDelegate {
-    func requestCompleted(service: SKHTTPService, result: SKHttpRequestResult, output: Any?, error: Error?, sender: Any?) {
-        switch result {
-        case .success:
-            ProgressHUD.dismiss()
-            if service == .CreateMaterielAction {
-                dismiss(animated: true) {
-                    let resp = (output as! UpdateMaterielOutput).resp
-                    NotificationCenter.default.post(Notification(name: .SKMaterielUpdatedNotificationName, object: [resp, self.indexPath as Any]))
-                }
-            }
-        case .failure:
-            ProgressHUD.showFailed(output == nil ? error?.localizedDescription : (output as! HttpServiceOutput).errorMessage, interaction: false)
-        default:
-            ProgressHUD.dismiss()
-        }
-    }
-}
-
-//MARK: - MaterielActionViewController
-class MaterielActionViewController: UIViewController {
-    @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var countTextField: UITextField!
-    @IBOutlet weak var reasonButton: UIButton!
-    @IBOutlet weak var errorMessageLabel: UILabel!
-    
-    var actionType:Int = 0
-    var selectedReason:Int?
-    var materiel:Materiel?
-    var indexPath:IndexPath?
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        reasonButton.menu = {
-            var actions:[UIAction] = []
-            for index in 0...2 {
-                let action = UIAction(title: converMaterielActionReasonToString(actionType: actionType, reason: index), handler: { [unowned self] action in
-                    self.reasonButton.setTitle(action.title, for: .normal)
-                    self.selectedReason = index
-                })
-                actions.append(action)
-            }
-            return UIMenu(children: actions)
-        }()
-        
-        switch actionType {
-        case 0:
-            titleLabel.text = "\(materiel?.name ?? "") 入库"
-        case 1:
-            titleLabel.text = "\(materiel?.name ?? "") 出库"
-        default:
-            break
-        }
-    }
-    @IBAction func conformPressed(_ sender: UIButton) {
-        IQKeyboardManager.shared.resignFirstResponder()
-        errorMessageLabel.text = ""
-        if selectedReason == nil {
-            errorMessageLabel.text = "请选择原因"
-            return
-        }
-        
-        let count = Int(countTextField.text!)
-        if count == nil {
-            errorMessageLabel.text = "数量只能为整数"
-            return
-        }
-        ProgressHUD.show(nil, interaction: false)
-        let input = CreateMaterielActionInput()
-        input.materielId = materiel!.id
-        input.delta = count
-        input.reason = selectedReason
-        input.actionType = actionType
-        let error = MaterielActionService(bodyParameter: input, delegate: self).createMaterielAction()
-        if error != nil {
-            ProgressHUD.showError(error?.localizedDescription, interaction: false)
-        }
-    }
-    
-}
-
-extension MaterielActionViewController: HttpServiceDelegate {
-    func requestCompleted(service: SKHTTPService, result: SKHttpRequestResult, output: Any?, error: Error?, sender: Any?) {
-        switch result {
-        case .success:
-            ProgressHUD.dismiss()
-            if service == .CreateMaterielAction {
-                dismiss(animated: true) {
-                    let resp = (output as! CreateMaterielActionOutput).resp
-                    NotificationCenter.default.post(Notification(name: .SKMaterielUpdatedNotificationName, object: [resp, self.indexPath as Any]))
-                }
-            }
-        case .failure:
-            ProgressHUD.showFailed(output == nil ? error?.localizedDescription : (output as! HttpServiceOutput).errorMessage, interaction: false)
-        default:
-            ProgressHUD.dismiss()
-        }
-    }
 }

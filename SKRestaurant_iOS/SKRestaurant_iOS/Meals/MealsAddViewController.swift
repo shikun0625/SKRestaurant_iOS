@@ -1,33 +1,14 @@
 //
-//  MealsViewControllers.swift
+//  MealsAddViewController.swift
 //  SKRestaurant_iOS
 //
-//  Created by 强尼 on 3/14/R5.
+//  Created by 强尼 on 3/15/R5.
 //
 
 import Foundation
 import UIKit
 import ProgressHUD
 
-//MARK: - MealsViewController
-class MealsViewController: UIViewController {
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
-}
-
-//MARK: - MealsTableViewCell
-class MealsTableViewCell: UITableViewCell {
-    @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var remarkLabel: UILabel!
-    @IBOutlet weak var materielsLabel: UILabel!
-    @IBOutlet weak var statusLabel: UILabel!
-    @IBOutlet weak var valueLabel: UILabel!
-    
-}
-
-
-//MARK: - MealsAddViewController
 class MealsAddViewController: UIViewController {
     
     @IBOutlet weak var errorMessageLabel: UILabel!
@@ -36,13 +17,28 @@ class MealsAddViewController: UIViewController {
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var valueTextField: UITextField!
     @IBOutlet weak var remarkTextField: UITextField!
+    @IBOutlet weak var typeButton: UIButton!
     
     var materiels:[Materiel] = []
     var checkedMateriels:[Materiel] = []
+    var selectedType:Int?
     override func viewDidLoad() {
         super.viewDidLoad()
         collectionView.delegate = self
         collectionView.dataSource = self
+        
+        typeButton.menu = {
+            var actions:[UIAction] = []
+            for i in 0...4 {
+                let action = UIAction(title: convertMealsTypeToString(type: i), handler: { [unowned self] action in
+                    self.typeButton.setTitle(action.title, for: .normal)
+                    self.selectedType = i
+                })
+                actions.append(action)
+            }
+            
+            return UIMenu(children: actions)
+        }()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -73,12 +69,18 @@ class MealsAddViewController: UIViewController {
             errorMessageLabel.text = "至少关联一项物料"
             return
         }
+        
+        if selectedType == nil {
+            errorMessageLabel.text = "请选择品类"
+            return
+        }
         ProgressHUD.show("", interaction: false)
         let input = CreateMealsInput()
         input.value = value
         input.name = nameTextField.text
         input.remark = remarkTextField.text
         input.status = 0
+        input.type = selectedType
         input.materielIds = []
         for materiel in checkedMateriels {
             input.materielIds?.append(materiel.id!)
@@ -105,9 +107,9 @@ extension MealsAddViewController: HttpServiceDelegate {
                     self.view.layoutIfNeeded()
                 }
             } else if service == .CreateMeals {
-                let resp = (output as! CreateMealsOutput).resp
                 dismiss(animated: true) {
-                    
+                    let resp = (output as! CreateMealsOutput).resp
+                    NotificationCenter.default.post(Notification(name: .SKMealsAddedNotificationName, object: resp))
                 }
             }
         case .failure:
@@ -144,7 +146,7 @@ extension MealsAddViewController: UICollectionViewDataSource, UICollectionViewDe
 extension MealsAddViewController: MealsAddCollectionViewCellDelegate {
     func checkChanged(checked: Bool, indexPath: IndexPath) {
         let materiel = materiels[indexPath.row]
-        var index = checkedMateriels.firstIndex { Materiel in
+        let index = checkedMateriels.firstIndex { Materiel in
             return materiel.id == Materiel.id
         }
         if checked {
@@ -160,7 +162,6 @@ extension MealsAddViewController: MealsAddCollectionViewCellDelegate {
     
     
 }
-
 
 //MARK: - MealsAddCollectionViewCell
 protocol MealsAddCollectionViewCellDelegate: AnyObject {

@@ -8,10 +8,21 @@
 
 /* Begin PBXBuildFile section */
 		AFAB0E8CC9E4C752AD1D5F52 /* Pods_SKRestaurant_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B63E6CED963B8F6A25964344 /* Pods_SKRestaurant_iOS.framework */; };
-		EF02813629BC4D8900A48653 /* MaterielViewControllers.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF02813529BC4D8900A48653 /* MaterielViewControllers.swift */; };
+		EF02813629BC4D8900A48653 /* MaterielViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF02813529BC4D8900A48653 /* MaterielViewController.swift */; };
 		EF02813A29BC4E2400A48653 /* Materiel.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EF02813929BC4E2400A48653 /* Materiel.storyboard */; };
+		EF82C57B29C1AD3700E84ED4 /* Order.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EF82C57A29C1AD3700E84ED4 /* Order.storyboard */; };
+		EF82C57D29C1ADA300E84ED4 /* OrderViewControllers.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF82C57C29C1ADA300E84ED4 /* OrderViewControllers.swift */; };
+		EF82C57F29C1EF7C00E84ED4 /* MealsAddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF82C57E29C1EF7C00E84ED4 /* MealsAddViewController.swift */; };
+		EF82C58129C1F03E00E84ED4 /* MaterielAddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF82C58029C1F03E00E84ED4 /* MaterielAddViewController.swift */; };
+		EF82C58329C1F08400E84ED4 /* MaterielEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF82C58229C1F08400E84ED4 /* MaterielEditViewController.swift */; };
+		EF82C58529C1F0B300E84ED4 /* MaterielActionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF82C58429C1F0B300E84ED4 /* MaterielActionViewController.swift */; };
+		EF82C58729C1F10D00E84ED4 /* MenuService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF82C58629C1F10D00E84ED4 /* MenuService.swift */; };
+		EF82C58929C1F13600E84ED4 /* MealsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF82C58829C1F13600E84ED4 /* MealsService.swift */; };
+		EF82C58B29C1F16800E84ED4 /* MaterielActionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF82C58A29C1F16800E84ED4 /* MaterielActionService.swift */; };
+		EF82C58D29C1F1A300E84ED4 /* MaterielService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF82C58C29C1F1A300E84ED4 /* MaterielService.swift */; };
+		EF82C58F29C1F1D100E84ED4 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF82C58E29C1F1D100E84ED4 /* UserService.swift */; };
 		EFB497C929BFFDD2006E2A44 /* Meals.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EFB497C829BFFDD2006E2A44 /* Meals.storyboard */; };
-		EFB497CB29BFFE15006E2A44 /* MealsViewControllers.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFB497CA29BFFE15006E2A44 /* MealsViewControllers.swift */; };
+		EFB497CB29BFFE15006E2A44 /* MealsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFB497CA29BFFE15006E2A44 /* MealsViewController.swift */; };
 		F68EFA8B29B5B21E00C1907A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F68EFA8A29B5B21E00C1907A /* AppDelegate.swift */; };
 		F68EFA8D29B5B21E00C1907A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F68EFA8C29B5B21E00C1907A /* SceneDelegate.swift */; };
 		F68EFA9229B5B21E00C1907A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F68EFA9029B5B21E00C1907A /* Main.storyboard */; };
@@ -20,7 +31,7 @@
 		F68EFAA029B5B38300C1907A /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F68EFA9F29B5B38300C1907A /* LoginViewController.swift */; };
 		F68EFAA329B5B72200C1907A /* MainSplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F68EFAA229B5B72200C1907A /* MainSplitViewController.swift */; };
 		F68EFAA529B5B97700C1907A /* SideMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F68EFAA429B5B97700C1907A /* SideMainViewController.swift */; };
-		F6C8962429B83E270012C2B5 /* RestaurantServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6C8962329B83E270012C2B5 /* RestaurantServer.swift */; };
+		F6C8962429B83E270012C2B5 /* ServerCommon.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6C8962329B83E270012C2B5 /* ServerCommon.swift */; };
 		F6C8962629B847270012C2B5 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6C8962529B847270012C2B5 /* Utils.swift */; };
 /* End PBXBuildFile section */
 
@@ -28,10 +39,21 @@
 		139AEFBBEE1EA9774053B61C /* Pods-SKRestaurant_iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SKRestaurant_iOS.release.xcconfig"; path = "Target Support Files/Pods-SKRestaurant_iOS/Pods-SKRestaurant_iOS.release.xcconfig"; sourceTree = "<group>"; };
 		B63E6CED963B8F6A25964344 /* Pods_SKRestaurant_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SKRestaurant_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED463416132A9CBF7C2C4682 /* Pods-SKRestaurant_iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SKRestaurant_iOS.debug.xcconfig"; path = "Target Support Files/Pods-SKRestaurant_iOS/Pods-SKRestaurant_iOS.debug.xcconfig"; sourceTree = "<group>"; };
-		EF02813529BC4D8900A48653 /* MaterielViewControllers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaterielViewControllers.swift; sourceTree = "<group>"; };
+		EF02813529BC4D8900A48653 /* MaterielViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaterielViewController.swift; sourceTree = "<group>"; };
 		EF02813929BC4E2400A48653 /* Materiel.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Materiel.storyboard; sourceTree = "<group>"; };
+		EF82C57A29C1AD3700E84ED4 /* Order.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Order.storyboard; sourceTree = "<group>"; };
+		EF82C57C29C1ADA300E84ED4 /* OrderViewControllers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderViewControllers.swift; sourceTree = "<group>"; };
+		EF82C57E29C1EF7C00E84ED4 /* MealsAddViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealsAddViewController.swift; sourceTree = "<group>"; };
+		EF82C58029C1F03E00E84ED4 /* MaterielAddViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaterielAddViewController.swift; sourceTree = "<group>"; };
+		EF82C58229C1F08400E84ED4 /* MaterielEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaterielEditViewController.swift; sourceTree = "<group>"; };
+		EF82C58429C1F0B300E84ED4 /* MaterielActionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaterielActionViewController.swift; sourceTree = "<group>"; };
+		EF82C58629C1F10D00E84ED4 /* MenuService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuService.swift; sourceTree = "<group>"; };
+		EF82C58829C1F13600E84ED4 /* MealsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealsService.swift; sourceTree = "<group>"; };
+		EF82C58A29C1F16800E84ED4 /* MaterielActionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaterielActionService.swift; sourceTree = "<group>"; };
+		EF82C58C29C1F1A300E84ED4 /* MaterielService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaterielService.swift; sourceTree = "<group>"; };
+		EF82C58E29C1F1D100E84ED4 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 		EFB497C829BFFDD2006E2A44 /* Meals.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Meals.storyboard; sourceTree = "<group>"; };
-		EFB497CA29BFFE15006E2A44 /* MealsViewControllers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealsViewControllers.swift; sourceTree = "<group>"; };
+		EFB497CA29BFFE15006E2A44 /* MealsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealsViewController.swift; sourceTree = "<group>"; };
 		F68EFA8729B5B21E00C1907A /* SKRestaurant_iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SKRestaurant_iOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F68EFA8A29B5B21E00C1907A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F68EFA8C29B5B21E00C1907A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -42,7 +64,7 @@
 		F68EFA9F29B5B38300C1907A /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		F68EFAA229B5B72200C1907A /* MainSplitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainSplitViewController.swift; sourceTree = "<group>"; };
 		F68EFAA429B5B97700C1907A /* SideMainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMainViewController.swift; sourceTree = "<group>"; };
-		F6C8962329B83E270012C2B5 /* RestaurantServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantServer.swift; sourceTree = "<group>"; };
+		F6C8962329B83E270012C2B5 /* ServerCommon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerCommon.swift; sourceTree = "<group>"; };
 		F6C8962529B847270012C2B5 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -78,16 +100,29 @@
 		EF02813429BC4D6700A48653 /* Materiel */ = {
 			isa = PBXGroup;
 			children = (
-				EF02813529BC4D8900A48653 /* MaterielViewControllers.swift */,
+				EF02813529BC4D8900A48653 /* MaterielViewController.swift */,
+				EF82C58029C1F03E00E84ED4 /* MaterielAddViewController.swift */,
+				EF82C58229C1F08400E84ED4 /* MaterielEditViewController.swift */,
+				EF82C58429C1F0B300E84ED4 /* MaterielActionViewController.swift */,
 				EF02813929BC4E2400A48653 /* Materiel.storyboard */,
 			);
 			path = Materiel;
 			sourceTree = "<group>";
 		};
+		EF82C57929C1AD2700E84ED4 /* Order */ = {
+			isa = PBXGroup;
+			children = (
+				EF82C57C29C1ADA300E84ED4 /* OrderViewControllers.swift */,
+				EF82C57A29C1AD3700E84ED4 /* Order.storyboard */,
+			);
+			path = Order;
+			sourceTree = "<group>";
+		};
 		EFB497C729BFFDB4006E2A44 /* Meals */ = {
 			isa = PBXGroup;
 			children = (
-				EFB497CA29BFFE15006E2A44 /* MealsViewControllers.swift */,
+				EFB497CA29BFFE15006E2A44 /* MealsViewController.swift */,
+				EF82C57E29C1EF7C00E84ED4 /* MealsAddViewController.swift */,
 				EFB497C829BFFDD2006E2A44 /* Meals.storyboard */,
 			);
 			path = Meals;
@@ -114,6 +149,7 @@
 		F68EFA8929B5B21E00C1907A /* SKRestaurant_iOS */ = {
 			isa = PBXGroup;
 			children = (
+				EF82C57929C1AD2700E84ED4 /* Order */,
 				EFB497C729BFFDB4006E2A44 /* Meals */,
 				EF02813429BC4D6700A48653 /* Materiel */,
 				F6C8962229B83DDC0012C2B5 /* Networks */,
@@ -158,7 +194,12 @@
 		F6C8962229B83DDC0012C2B5 /* Networks */ = {
 			isa = PBXGroup;
 			children = (
-				F6C8962329B83E270012C2B5 /* RestaurantServer.swift */,
+				F6C8962329B83E270012C2B5 /* ServerCommon.swift */,
+				EF82C58E29C1F1D100E84ED4 /* UserService.swift */,
+				EF82C58629C1F10D00E84ED4 /* MenuService.swift */,
+				EF82C58829C1F13600E84ED4 /* MealsService.swift */,
+				EF82C58C29C1F1A300E84ED4 /* MaterielService.swift */,
+				EF82C58A29C1F16800E84ED4 /* MaterielActionService.swift */,
 			);
 			path = Networks;
 			sourceTree = "<group>";
@@ -228,6 +269,7 @@
 				EF02813A29BC4E2400A48653 /* Materiel.storyboard in Resources */,
 				F68EFA9429B5B22000C1907A /* Assets.xcassets in Resources */,
 				F68EFA9229B5B21E00C1907A /* Main.storyboard in Resources */,
+				EF82C57B29C1AD3700E84ED4 /* Order.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -280,14 +322,24 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EF82C58929C1F13600E84ED4 /* MealsService.swift in Sources */,
 				F68EFAA329B5B72200C1907A /* MainSplitViewController.swift in Sources */,
-				EF02813629BC4D8900A48653 /* MaterielViewControllers.swift in Sources */,
-				F6C8962429B83E270012C2B5 /* RestaurantServer.swift in Sources */,
-				EFB497CB29BFFE15006E2A44 /* MealsViewControllers.swift in Sources */,
+				EF02813629BC4D8900A48653 /* MaterielViewController.swift in Sources */,
+				F6C8962429B83E270012C2B5 /* ServerCommon.swift in Sources */,
+				EF82C58D29C1F1A300E84ED4 /* MaterielService.swift in Sources */,
+				EF82C58529C1F0B300E84ED4 /* MaterielActionViewController.swift in Sources */,
+				EF82C57D29C1ADA300E84ED4 /* OrderViewControllers.swift in Sources */,
+				EFB497CB29BFFE15006E2A44 /* MealsViewController.swift in Sources */,
+				EF82C58129C1F03E00E84ED4 /* MaterielAddViewController.swift in Sources */,
 				F68EFAA529B5B97700C1907A /* SideMainViewController.swift in Sources */,
+				EF82C58B29C1F16800E84ED4 /* MaterielActionService.swift in Sources */,
+				EF82C58729C1F10D00E84ED4 /* MenuService.swift in Sources */,
 				F6C8962629B847270012C2B5 /* Utils.swift in Sources */,
+				EF82C58F29C1F1D100E84ED4 /* UserService.swift in Sources */,
 				F68EFAA029B5B38300C1907A /* LoginViewController.swift in Sources */,
 				F68EFA8B29B5B21E00C1907A /* AppDelegate.swift in Sources */,
+				EF82C58329C1F08400E84ED4 /* MaterielEditViewController.swift in Sources */,
+				EF82C57F29C1EF7C00E84ED4 /* MealsAddViewController.swift in Sources */,
 				F68EFA8D29B5B21E00C1907A /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
