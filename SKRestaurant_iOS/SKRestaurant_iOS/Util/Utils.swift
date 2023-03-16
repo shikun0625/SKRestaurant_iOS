@@ -228,3 +228,60 @@ extension Notification.Name {
         }
     }
 }
+
+
+@IBDesignable class DesignableView: UIView {
+    @IBInspectable var cornerRadius: CGFloat {
+        get {
+            return layer.cornerRadius
+        }
+        set {
+            layer.cornerRadius = newValue
+        }
+    }
+    @IBInspectable var masksToBounds: Bool {
+        get {
+            return layer.masksToBounds
+        }
+        set {
+            layer.masksToBounds = newValue
+        }
+    }
+    
+    @IBInspectable var shadowColor:UIColor {
+        get {
+            guard let color = layer.shadowColor else { return .clear }
+            return UIColor(cgColor: color)
+        }
+        set {
+            layer.shadowColor = newValue.cgColor
+        }
+    }
+    
+    @IBInspectable var shadowOpacity:Float {
+        get {
+            return layer.shadowOpacity
+        }
+        set {
+            layer.shadowOpacity = newValue
+        }
+    }
+    
+    @IBInspectable var shadowOffset:CGSize {
+        get {
+            return layer.shadowOffset
+        }
+        set {
+            layer.shadowOffset = newValue
+        }
+    }
+    
+    @IBInspectable var shadowRadius:CGFloat {
+        get {
+            return layer.shadowRadius
+        }
+        set {
+            layer.shadowRadius = newValue
+        }
+    }
+}

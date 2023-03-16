@@ -22,6 +22,8 @@ class OrderViewController: UIViewController {
         
         topCollectionView.delegate = self
         topCollectionView.dataSource = self
+        mainCollectionView.delegate = self
+        mainCollectionView.dataSource = self
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -67,6 +69,7 @@ extension OrderViewController: HttpServiceDelegate {
                 menus = resultOutput.resp.mealses
                 prepareData()
                 topCollectionView.reloadData()
+                mainCollectionView.reloadData()
             }
         case .failure:
             ProgressHUD.showFailed(output == nil ? error?.localizedDescription : (output as! HttpServiceOutput).errorMessage, interaction: false)
@@ -86,6 +89,12 @@ extension OrderViewController: UICollectionViewDataSource, UICollectionViewDeleg
         switch collectionView {
         case topCollectionView:
             return menusData.keys.count
+        case mainCollectionView:
+            let keys = Array(menusData.keys).sorted()
+            if keys.count == 0 {
+                return 0
+            }
+            return menusData[keys[selectedTypeIndex]]!.count
         default:
             return 0
         }
@@ -103,6 +112,13 @@ extension OrderViewController: UICollectionViewDataSource, UICollectionViewDeleg
                 cell.backgroundColor = .systemGray4
             }
             return cell
+        case mainCollectionView:
+            let menu = menusData[keys[selectedTypeIndex]]![indexPath.row]
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! OrderViewMainCollectionCell
+            cell.titleLabel.text = menu.name
+            cell.valueLabel.text = String(format: "%.2f", menu.value!)
+            cell.availableCountLabel.text = String(format: "余：%d", menu.availableCount!)
+            return cell
         default:
             return UICollectionViewCell()
         }
@@ -112,6 +128,9 @@ extension OrderViewController: UICollectionViewDataSource, UICollectionViewDeleg
         switch collectionView {
         case topCollectionView:
             return CGSize(width: 120, height: 120)
+        case mainCollectionView:
+            let width:CGFloat = (collectionView.frame.width - 10 * 3 - (20 + 20)) / 4.0
+            return CGSize(width: width, height: width)
         default:
             return CGSizeZero
         }
@@ -122,6 +141,9 @@ extension OrderViewController: UICollectionViewDataSource, UICollectionViewDeleg
         case topCollectionView:
             selectedTypeIndex = indexPath.row
             topCollectionView.reloadData()
+            mainCollectionView.reloadData()
+        case mainCollectionView:
+            do {}
         default:
             break
         }
@@ -130,6 +152,12 @@ extension OrderViewController: UICollectionViewDataSource, UICollectionViewDeleg
 
 
 class OrderViewTopCollectionCell: UICollectionViewCell {
-    
     @IBOutlet weak var titleLabel: UILabel!
+}
+
+class OrderViewMainCollectionCell: UICollectionViewCell {
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var valueLabel: UILabel!
+    @IBOutlet weak var availableCountLabel: UILabel!
+    
 }
