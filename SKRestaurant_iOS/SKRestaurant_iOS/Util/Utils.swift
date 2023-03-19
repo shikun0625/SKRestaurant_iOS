@@ -8,6 +8,12 @@
 import Foundation
 import UIKit
 
+let SCREEN_WIDTH = {
+    let scene = UIApplication.shared.connectedScenes.first as! UIWindowScene
+    let window = scene.keyWindow
+    return window?.frame.width
+}()
+
 func log(_ item: Any, _ file: String = #file, _ line: Int = #line, _ function: String = #function) {
     objc_sync_enter(item)
     print(file + ":\(line):" + function, item)
@@ -106,6 +112,8 @@ func convertMaterielActionReasonToString(actionType:Int, reason:Int) -> String {
             result = "制作"
         case 2:
             result = "退货"
+        case 3:
+            result = "补齐"
         default:
             break
         }
@@ -282,6 +290,25 @@ extension Notification.Name {
         }
         set {
             layer.shadowRadius = newValue
+        }
+    }
+    
+    @IBInspectable var borderColor:UIColor {
+        get {
+            guard let color = layer.borderColor else { return .clear }
+            return UIColor(cgColor: color)
+        }
+        set {
+            layer.borderColor = newValue.cgColor
+        }
+    }
+    
+    @IBInspectable var borderWidth:CGFloat {
+        get {
+            return layer.borderWidth
+        }
+        set {
+            layer.borderWidth = newValue
         }
     }
 }

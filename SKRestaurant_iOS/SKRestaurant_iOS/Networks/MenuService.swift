@@ -14,8 +14,8 @@ class GetMenuOutput: HttpServiceOutput {
 }
 
 class GetMenuResp: HttpServiceResp {
-    var mealses:[Menu] = []
-   
+    var menus:[Menu] = []
+    var materiels:[Materiel] = []
 }
 
 class Menu: HandyJSON {
@@ -23,7 +23,7 @@ class Menu: HandyJSON {
     var name:String?
     var type:Int?
     var value:Float?
-    var availableCount:Int?
+    var materielIds:[Int] = []
     
     required init() {
         

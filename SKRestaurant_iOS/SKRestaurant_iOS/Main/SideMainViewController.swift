@@ -81,7 +81,7 @@ extension SideMainViewController: UITableViewDelegate, UITableViewDataSource {
         case 1:
             return 5
         case 2:
-            return 2
+            return 3
         default:
             return 0
         }
@@ -131,11 +131,14 @@ extension SideMainViewController: UITableViewDelegate, UITableViewDataSource {
             let cell = tableView.dequeueReusableCell(withIdentifier: "side_main_setting_cell", for: indexPath) as! SideMainSettingTableCell
             switch indexPath.row {
             case 0:
-                cell.icon.image = UIImage(named: "icon_side_main_setting_report")
+                cell.icon.image = UIImage(named: "icon_side_main_management_report")
                 cell.title_label.text = "报表"
             case 1:
-                cell.icon.image = UIImage(named: "icon_side_main_setting_schedule")
+                cell.icon.image = UIImage(named: "icon_side_main_management_schedule")
                 cell.title_label.text = "班表"
+            case 2:
+                cell.icon.image = UIImage(named: "icon_side_main_management_order")
+                cell.title_label.text = "订单"
             default:
                 break
             }

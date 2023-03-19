@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="ipad10_9rounded" orientation="landscape" layout="fullscreen" appearance="light"/>
+    <device id="ipad12_9rounded" orientation="landscape" layout="fullscreen" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
@@ -16,11 +16,11 @@
             <objects>
                 <viewController storyboardIdentifier="mealsRoot" id="wCs-us-0i6" customClass="MealsViewController" customModule="SKRestaurant_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="91W-7n-BGK">
-                        <rect key="frame" x="0.0" y="0.0" width="1180" height="820"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1366" height="1024"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zGH-3d-ZQC">
-                                <rect key="frame" x="0.0" y="24" width="1180" height="30"/>
+                                <rect key="frame" x="0.0" y="24" width="1366" height="30"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0GM-6L-ZSh">
                                         <rect key="frame" x="0.0" y="0.0" width="150" height="30"/>
@@ -77,7 +77,7 @@
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hHk-hX-nsq">
-                                        <rect key="frame" x="980" y="0.0" width="200" height="30"/>
+                                        <rect key="frame" x="1166" y="0.0" width="200" height="30"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="操作" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DY0-Wc-c1k">
                                                 <rect key="frame" x="15" y="4.5" width="170" height="21"/>
@@ -95,7 +95,7 @@
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PUb-I2-I8m">
-                                        <rect key="frame" x="440" y="0.0" width="540" height="30"/>
+                                        <rect key="frame" x="440" y="0.0" width="726" height="30"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="备注" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a54-8X-AJP">
                                                 <rect key="frame" x="15" y="4.5" width="35" height="21"/>
@@ -133,14 +133,14 @@
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="oAe-lP-KEX">
-                                <rect key="frame" x="0.0" y="54" width="1180" height="746"/>
+                                <rect key="frame" x="0.0" y="54" width="1366" height="950"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="80" id="E74-6t-PGV" customClass="MealsTableViewCell" customModule="SKRestaurant_iOS" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="50" width="1180" height="80"/>
+                                        <rect key="frame" x="0.0" y="50" width="1366" height="80"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="E74-6t-PGV" id="rrE-QJ-EPl">
-                                            <rect key="frame" x="0.0" y="0.0" width="1180" height="80"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="1366" height="80"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oUj-lw-ZCO">
@@ -207,7 +207,7 @@
                                                     </constraints>
                                                 </view>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3f3-cB-rrq">
-                                                    <rect key="frame" x="980" y="0.0" width="200" height="80"/>
+                                                    <rect key="frame" x="1166" y="0.0" width="200" height="80"/>
                                                     <subviews>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aWS-BL-4oo" customClass="DesignableButton" customModule="SKRestaurant_iOS" customModuleProvider="target">
                                                             <rect key="frame" x="15" y="20" width="80" height="40"/>
@@ -268,10 +268,10 @@
                                                     </constraints>
                                                 </view>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zps-C3-yxG">
-                                                    <rect key="frame" x="440" y="0.0" width="540" height="80"/>
+                                                    <rect key="frame" x="440" y="0.0" width="726" height="80"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="备注" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HLK-9p-y9u">
-                                                            <rect key="frame" x="15" y="0.0" width="510" height="80"/>
+                                                            <rect key="frame" x="15" y="0.0" width="696" height="80"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
@@ -334,7 +334,7 @@
                     <navigationItem key="navigationItem" title="菜单" id="R6h-X6-l7u">
                         <barButtonItem key="rightBarButtonItem" title="Item" image="meal_button_add" id="vA8-SO-T9t">
                             <connections>
-                                <segue destination="ozd-aK-kql" kind="presentation" id="wDk-Eg-dGy"/>
+                                <segue destination="ozd-aK-kql" kind="presentation" modalPresentationStyle="formSheet" id="wDk-Eg-dGy"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -351,17 +351,17 @@
             <objects>
                 <viewController id="ozd-aK-kql" customClass="MealsAddViewController" customModule="SKRestaurant_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="mOU-Wm-MKG">
-                        <rect key="frame" x="0.0" y="0.0" width="704" height="740"/>
+                        <rect key="frame" x="0.0" y="0.0" width="580" height="640"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="s6p-NF-CiN">
-                                <rect key="frame" x="0.0" y="0.0" width="704" height="740"/>
+                                <rect key="frame" x="0.0" y="0.0" width="580" height="640"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rOE-DF-5on">
-                                        <rect key="frame" x="0.0" y="0.0" width="704" height="414"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="580" height="414"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="新增菜品" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zno-hw-JDD">
-                                                <rect key="frame" x="317.5" y="50" width="69" height="21"/>
+                                                <rect key="frame" x="255.5" y="50" width="69" height="21"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -376,12 +376,12 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="SHr-tN-Qiv">
-                                                <rect key="frame" x="130" y="94.5" width="207" height="34"/>
+                                                <rect key="frame" x="130" y="94.5" width="145" height="34"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="单价：" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5LX-7t-OEW">
-                                                <rect key="frame" x="367" y="101" width="100" height="21"/>
+                                                <rect key="frame" x="305" y="101" width="100" height="21"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="100" id="xSA-gq-cKv"/>
                                                 </constraints>
@@ -390,12 +390,12 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cQ9-xC-sgc">
-                                                <rect key="frame" x="482" y="94.5" width="207" height="34"/>
+                                                <rect key="frame" x="420" y="94.5" width="145" height="34"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                             </textField>
                                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Cmp-oZ-qPg">
-                                                <rect key="frame" x="15" y="239" width="674" height="50"/>
+                                                <rect key="frame" x="15" y="239" width="550" height="50"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="50" id="zxh-8v-7kU"/>
@@ -451,7 +451,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Vmr-Ys-Sww">
-                                                <rect key="frame" x="130" y="145.5" width="207" height="34"/>
+                                                <rect key="frame" x="130" y="145.5" width="145" height="34"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
@@ -462,7 +462,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d3X-kx-loy">
-                                                <rect key="frame" x="312" y="339" width="80" height="40"/>
+                                                <rect key="frame" x="250" y="339" width="80" height="40"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="80" id="1yq-Wc-CcD"/>
                                                     <constraint firstAttribute="height" constant="40" id="n1o-7U-qkx"/>
@@ -476,13 +476,13 @@
                                                 </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d5u-IR-zYV">
-                                                <rect key="frame" x="352" y="394" width="0.0" height="0.0"/>
+                                                <rect key="frame" x="290" y="394" width="0.0" height="0.0"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" systemColor="systemRedColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="品类：" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Goe-Uf-y3V">
-                                                <rect key="frame" x="367" y="152" width="100" height="21"/>
+                                                <rect key="frame" x="305" y="152" width="100" height="21"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="100" id="x3K-cl-AVE"/>
                                                 </constraints>
@@ -491,7 +491,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <button opaque="NO" contentMode="scaleToFill" showsMenuAsPrimaryAction="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Uq-ak-i0S">
-                                                <rect key="frame" x="643" y="147.5" width="46" height="30"/>
+                                                <rect key="frame" x="519" y="147.5" width="46" height="30"/>
                                                 <state key="normal" title="请选择">
                                                     <color key="titleColor" name="mealsBlue"/>
                                                 </state>

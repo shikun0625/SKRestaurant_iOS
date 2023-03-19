@@ -8,7 +8,7 @@
 import Foundation
 import Alamofire
 
-class UserLoginBodyParameter:HttpParameter {
+class UserLoginInput:HttpParameter {
     var username:String?
     var password:String?
 }
@@ -24,7 +24,7 @@ class UserLoginResp:HttpServiceResp {
 
 class UserService:HttpService {
     func parameterCheck() -> Bool {
-        if let bodyParameter = bodyParameter as? UserLoginBodyParameter {
+        if let bodyParameter = bodyParameter as? UserLoginInput {
             if let username = bodyParameter.username {
                 if username.count == 0 {
                     return false

@@ -41,6 +41,8 @@ class SKHTTPService: Equatable {
     public static let GetMealses = SKHTTPService(path: "/meals", method: .get)
     public static let UpdateMeals = SKHTTPService(path: "/meals", method: .put)
     public static let GetMenu = SKHTTPService(path: "/menu", method: .get)
+    public static let PostOrder = SKHTTPService(path: "/order", method: .post)
+    public static let UpdateOrder = SKHTTPService(path: "/order", method: .put)
     
     var path:String = ""
     var method:HTTPMethod = .options

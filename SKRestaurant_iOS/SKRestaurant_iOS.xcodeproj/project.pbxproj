@@ -21,6 +21,8 @@
 		EF82C58B29C1F16800E84ED4 /* MaterielActionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF82C58A29C1F16800E84ED4 /* MaterielActionService.swift */; };
 		EF82C58D29C1F1A300E84ED4 /* MaterielService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF82C58C29C1F1A300E84ED4 /* MaterielService.swift */; };
 		EF82C58F29C1F1D100E84ED4 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF82C58E29C1F1D100E84ED4 /* UserService.swift */; };
+		EFA6146629C5DC2400C2FBC5 /* OrderService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFA6146529C5DC2400C2FBC5 /* OrderService.swift */; };
+		EFA6146829C7052D00C2FBC5 /* WaitingForPayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFA6146729C7052D00C2FBC5 /* WaitingForPayViewController.swift */; };
 		EFB497C929BFFDD2006E2A44 /* Meals.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EFB497C829BFFDD2006E2A44 /* Meals.storyboard */; };
 		EFB497CB29BFFE15006E2A44 /* MealsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFB497CA29BFFE15006E2A44 /* MealsViewController.swift */; };
 		F68EFA8B29B5B21E00C1907A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F68EFA8A29B5B21E00C1907A /* AppDelegate.swift */; };
@@ -52,6 +54,8 @@
 		EF82C58A29C1F16800E84ED4 /* MaterielActionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaterielActionService.swift; sourceTree = "<group>"; };
 		EF82C58C29C1F1A300E84ED4 /* MaterielService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaterielService.swift; sourceTree = "<group>"; };
 		EF82C58E29C1F1D100E84ED4 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
+		EFA6146529C5DC2400C2FBC5 /* OrderService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderService.swift; sourceTree = "<group>"; };
+		EFA6146729C7052D00C2FBC5 /* WaitingForPayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaitingForPayViewController.swift; sourceTree = "<group>"; };
 		EFB497C829BFFDD2006E2A44 /* Meals.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Meals.storyboard; sourceTree = "<group>"; };
 		EFB497CA29BFFE15006E2A44 /* MealsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealsViewController.swift; sourceTree = "<group>"; };
 		F68EFA8729B5B21E00C1907A /* SKRestaurant_iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SKRestaurant_iOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -113,6 +117,7 @@
 			isa = PBXGroup;
 			children = (
 				EF82C57C29C1ADA300E84ED4 /* OrderViewControllers.swift */,
+				EFA6146729C7052D00C2FBC5 /* WaitingForPayViewController.swift */,
 				EF82C57A29C1AD3700E84ED4 /* Order.storyboard */,
 			);
 			path = Order;
@@ -200,6 +205,7 @@
 				EF82C58829C1F13600E84ED4 /* MealsService.swift */,
 				EF82C58C29C1F1A300E84ED4 /* MaterielService.swift */,
 				EF82C58A29C1F16800E84ED4 /* MaterielActionService.swift */,
+				EFA6146529C5DC2400C2FBC5 /* OrderService.swift */,
 			);
 			path = Networks;
 			sourceTree = "<group>";
@@ -326,8 +332,10 @@
 				F68EFAA329B5B72200C1907A /* MainSplitViewController.swift in Sources */,
 				EF02813629BC4D8900A48653 /* MaterielViewController.swift in Sources */,
 				F6C8962429B83E270012C2B5 /* ServerCommon.swift in Sources */,
+				EFA6146829C7052D00C2FBC5 /* WaitingForPayViewController.swift in Sources */,
 				EF82C58D29C1F1A300E84ED4 /* MaterielService.swift in Sources */,
 				EF82C58529C1F0B300E84ED4 /* MaterielActionViewController.swift in Sources */,
+				EFA6146629C5DC2400C2FBC5 /* OrderService.swift in Sources */,
 				EF82C57D29C1ADA300E84ED4 /* OrderViewControllers.swift in Sources */,
 				EFB497CB29BFFE15006E2A44 /* MealsViewController.swift in Sources */,
 				EF82C58129C1F03E00E84ED4 /* MaterielAddViewController.swift in Sources */,
@@ -493,10 +501,12 @@
 				INFOPLIST_FILE = SKRestaurant_iOS/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "SK餐饮";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.business";
+				INFOPLIST_KEY_NSFaceIDUsageDescription = "登录验证";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -527,10 +537,12 @@
 				INFOPLIST_FILE = SKRestaurant_iOS/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "SK餐饮";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.business";
+				INFOPLIST_KEY_NSFaceIDUsageDescription = "登录验证";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

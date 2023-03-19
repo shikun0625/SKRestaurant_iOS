@@ -27,7 +27,6 @@ class MainSplitViewController: UISplitViewController {
         NotificationCenter.default.removeObserver(self, name: .SKShowMealsViewNotificationName, object: nil)
         NotificationCenter.default.removeObserver(self, name: .SKShowOrderViewNotificationName, object: nil)
     }
-   
     
     @objc private func showMaterielNotification(notification:Notification) -> Void {
         let naviViewController = viewController(for: .secondary) as! UINavigationController

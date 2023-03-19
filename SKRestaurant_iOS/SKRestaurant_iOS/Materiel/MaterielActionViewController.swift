@@ -26,7 +26,8 @@ class MaterielActionViewController: UIViewController {
         
         reasonButton.menu = {
             var actions:[UIAction] = []
-            for index in 0...2 {
+            let count = actionType == 0 ? 3 : 2
+            for index in 0...count {
                 let action = UIAction(title: convertMaterielActionReasonToString(actionType: actionType, reason: index), handler: { [unowned self] action in
                     self.reasonButton.setTitle(action.title, for: .normal)
                     self.selectedReason = index
@@ -61,7 +62,7 @@ class MaterielActionViewController: UIViewController {
         ProgressHUD.show(nil, interaction: false)
         let input = CreateMaterielActionInput()
         input.materielId = materiel!.id
-        input.delta = count
+        input.delta = actionType == 0 ? count : -count!
         input.reason = selectedReason
         input.actionType = actionType
         let error = MaterielActionService(bodyParameter: input, delegate: self).createMaterielAction()
