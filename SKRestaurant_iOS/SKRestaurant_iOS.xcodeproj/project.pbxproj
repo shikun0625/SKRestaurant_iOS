@@ -21,6 +21,7 @@
 		EF82C58B29C1F16800E84ED4 /* MaterielActionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF82C58A29C1F16800E84ED4 /* MaterielActionService.swift */; };
 		EF82C58D29C1F1A300E84ED4 /* MaterielService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF82C58C29C1F1A300E84ED4 /* MaterielService.swift */; };
 		EF82C58F29C1F1D100E84ED4 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF82C58E29C1F1D100E84ED4 /* UserService.swift */; };
+		EF9A09E529C853EE00EC8E07 /* PayService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF9A09E429C853EE00EC8E07 /* PayService.swift */; };
 		EFA6146629C5DC2400C2FBC5 /* OrderService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFA6146529C5DC2400C2FBC5 /* OrderService.swift */; };
 		EFA6146829C7052D00C2FBC5 /* WaitingForPayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFA6146729C7052D00C2FBC5 /* WaitingForPayViewController.swift */; };
 		EFB497C929BFFDD2006E2A44 /* Meals.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EFB497C829BFFDD2006E2A44 /* Meals.storyboard */; };
@@ -54,6 +55,7 @@
 		EF82C58A29C1F16800E84ED4 /* MaterielActionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaterielActionService.swift; sourceTree = "<group>"; };
 		EF82C58C29C1F1A300E84ED4 /* MaterielService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaterielService.swift; sourceTree = "<group>"; };
 		EF82C58E29C1F1D100E84ED4 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
+		EF9A09E429C853EE00EC8E07 /* PayService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayService.swift; sourceTree = "<group>"; };
 		EFA6146529C5DC2400C2FBC5 /* OrderService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderService.swift; sourceTree = "<group>"; };
 		EFA6146729C7052D00C2FBC5 /* WaitingForPayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaitingForPayViewController.swift; sourceTree = "<group>"; };
 		EFB497C829BFFDD2006E2A44 /* Meals.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Meals.storyboard; sourceTree = "<group>"; };
@@ -206,6 +208,7 @@
 				EF82C58C29C1F1A300E84ED4 /* MaterielService.swift */,
 				EF82C58A29C1F16800E84ED4 /* MaterielActionService.swift */,
 				EFA6146529C5DC2400C2FBC5 /* OrderService.swift */,
+				EF9A09E429C853EE00EC8E07 /* PayService.swift */,
 			);
 			path = Networks;
 			sourceTree = "<group>";
@@ -346,6 +349,7 @@
 				EF82C58F29C1F1D100E84ED4 /* UserService.swift in Sources */,
 				F68EFAA029B5B38300C1907A /* LoginViewController.swift in Sources */,
 				F68EFA8B29B5B21E00C1907A /* AppDelegate.swift in Sources */,
+				EF9A09E529C853EE00EC8E07 /* PayService.swift in Sources */,
 				EF82C58329C1F08400E84ED4 /* MaterielEditViewController.swift in Sources */,
 				EF82C57F29C1EF7C00E84ED4 /* MealsAddViewController.swift in Sources */,
 				F68EFA8D29B5B21E00C1907A /* SceneDelegate.swift in Sources */,
@@ -492,6 +496,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = ED463416132A9CBF7C2C4682 /* Pods-SKRestaurant_iOS.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
@@ -513,6 +518,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
+				OTHER_SWIFT_FLAGS = "$(inherited) -D COCOAPODS";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.johnny.sk.SKRestaurant-iOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -528,6 +534,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 139AEFBBEE1EA9774053B61C /* Pods-SKRestaurant_iOS.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
@@ -549,6 +556,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
+				OTHER_SWIFT_FLAGS = "$(inherited) -D COCOAPODS";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.johnny.sk.SKRestaurant-iOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";

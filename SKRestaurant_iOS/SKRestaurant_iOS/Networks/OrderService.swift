@@ -13,6 +13,8 @@ class CreateOrderInput: HttpParameter {
     var menus:[String:Int]?
     var totalAmount:Float?
     var type:Int?
+    var payAmount:Float?
+    var payType:Int?
 }
 
 class CreateOrderOutput: HttpServiceOutput {
@@ -42,6 +44,7 @@ class UpdateOrderInput: HttpParameter {
     var orderId:String?
     var status:Int?
     var payType:Int?
+    var payAmount:Float?
 }
 
 class UpdateOrderOutput: HttpServiceOutput {

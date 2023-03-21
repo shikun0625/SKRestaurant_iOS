@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="ipad10_2" orientation="landscape" layout="fullscreen" appearance="light"/>
+    <device id="ipad12_9rounded" orientation="landscape" layout="fullscreen" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
@@ -16,11 +16,11 @@
             <objects>
                 <viewController storyboardIdentifier="orderRoot" id="qg2-mk-BHM" customClass="OrderViewController" customModule="SKRestaurant_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="vW3-Ip-5Qr">
-                        <rect key="frame" x="0.0" y="0.0" width="1080" height="810"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1366" height="1024"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="TOt-ot-g9n">
-                                <rect key="frame" x="0.0" y="100" width="840" height="710"/>
+                                <rect key="frame" x="0.0" y="104" width="1126" height="900"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="xM7-ly-OK0">
                                     <size key="itemSize" width="170" height="170"/>
@@ -115,10 +115,10 @@
                                 </cells>
                             </collectionView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mm4-bW-AEA">
-                                <rect key="frame" x="840" y="20" width="240" height="790"/>
+                                <rect key="frame" x="1126" y="24" width="240" height="980"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gbF-2U-Dif" customClass="DesignableView" customModule="SKRestaurant_iOS" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="680" width="240" height="110"/>
+                                        <rect key="frame" x="0.0" y="870" width="240" height="110"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cwd-YW-eCB" customClass="DesignableButton" customModule="SKRestaurant_iOS" customModuleProvider="target">
                                                 <rect key="frame" x="105" y="10" width="120" height="70"/>
@@ -189,7 +189,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </view>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="MPp-gu-Eie">
-                                        <rect key="frame" x="0.0" y="80" width="240" height="556"/>
+                                        <rect key="frame" x="0.0" y="80" width="240" height="746"/>
                                         <color key="backgroundColor" systemColor="systemGray4Color"/>
                                         <prototypes>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="cell" rowHeight="44" id="yAP-Q3-Y1F" customClass="OrderViewListTableViewCell" customModule="SKRestaurant_iOS" customModuleProvider="target">
@@ -282,7 +282,7 @@
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="me3-RM-dOU" customClass="DesignableView" customModule="SKRestaurant_iOS" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="636" width="240" height="44"/>
+                                        <rect key="frame" x="0.0" y="826" width="240" height="44"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="总计" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BIp-nK-rw0">
                                                 <rect key="frame" x="15" y="11.5" width="35" height="21"/>
@@ -335,7 +335,7 @@
                                 </constraints>
                             </view>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="xAz-7z-sOb">
-                                <rect key="frame" x="0.0" y="20" width="840" height="80"/>
+                                <rect key="frame" x="0.0" y="24" width="1126" height="80"/>
                                 <color key="backgroundColor" systemColor="systemGray4Color"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="80" id="BOH-wz-k3d"/>
@@ -412,91 +412,198 @@
                         <rect key="frame" x="0.0" y="0.0" width="580" height="640"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="等待支付。。。" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2oc-ZC-Wjl">
-                                <rect key="frame" x="218.5" y="50" width="143" height="24"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="等待用户扫码" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2oc-ZC-Wjl">
+                                <rect key="frame" x="229" y="50" width="122.5" height="24"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="16z-xm-wQN">
-                                <rect key="frame" x="271.5" y="124" width="37" height="37"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YSV-wM-fcP">
+                                <rect key="frame" x="269.5" y="104" width="41.5" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="16z-xm-wQN">
+                                <rect key="frame" x="271.5" y="154.5" width="37" height="37"/>
                             </activityIndicatorView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="POO-zt-jsv" customClass="DesignableButton" customModule="SKRestaurant_iOS" customModuleProvider="target">
-                                <rect key="frame" x="250" y="211" width="80" height="40"/>
-                                <color key="backgroundColor" name="orderBlue"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="aQN-gT-xd6">
+                                <rect key="frame" x="15" y="221.5" width="550" height="110"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SMY-Q2-6mX" customClass="DesignableButton" customModule="SKRestaurant_iOS" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="122.5" height="110"/>
+                                        <color key="backgroundColor" systemColor="systemGray5Color"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" title="扫码">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <buttonConfiguration key="configuration" style="plain" title="扫码">
+                                            <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </buttonConfiguration>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="5"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="scanPressed:" destination="CQn-eC-lDl" eventType="touchUpInside" id="gQD-ON-LJz"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fEj-vQ-qHc" customClass="DesignableButton" customModule="SKRestaurant_iOS" customModuleProvider="target">
+                                        <rect key="frame" x="142.5" y="0.0" width="122.5" height="110"/>
+                                        <color key="backgroundColor" name="orderBlue"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" title="现金">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <buttonConfiguration key="configuration" style="plain" title="现金">
+                                            <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </buttonConfiguration>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="5"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="cashPressed:" destination="CQn-eC-lDl" eventType="touchUpInside" id="4dL-Vk-18d"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="POO-zt-jsv" customClass="DesignableButton" customModule="SKRestaurant_iOS" customModuleProvider="target">
+                                        <rect key="frame" x="285" y="0.0" width="122.5" height="110"/>
+                                        <color key="backgroundColor" name="orderBlue"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" title="公关">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <buttonConfiguration key="configuration" style="plain" title="公关">
+                                            <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </buttonConfiguration>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="5"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="publicRelationsPressed:" destination="CQn-eC-lDl" eventType="touchUpInside" id="aNf-on-ARA"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fKP-af-Z6a" customClass="DesignableButton" customModule="SKRestaurant_iOS" customModuleProvider="target">
+                                        <rect key="frame" x="427.5" y="0.0" width="122.5" height="110"/>
+                                        <color key="backgroundColor" name="orderBlue"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" title="取消">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <buttonConfiguration key="configuration" style="plain" title="取消">
+                                            <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </buttonConfiguration>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="5"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="cancelPressed:" destination="CQn-eC-lDl" eventType="touchUpInside" id="DJG-Qb-Wsn"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="80" id="Yxp-DE-sUj"/>
-                                    <constraint firstAttribute="height" constant="40" id="c9U-zO-Jon"/>
+                                    <constraint firstAttribute="height" constant="110" id="NVa-UN-COk"/>
                                 </constraints>
-                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                <state key="normal" title="公关">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                        <real key="value" value="5"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <action selector="publicRelationsPressed:" destination="CQn-eC-lDl" eventType="touchUpInside" id="aNf-on-ARA"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fEj-vQ-qHc" customClass="DesignableButton" customModule="SKRestaurant_iOS" customModuleProvider="target">
-                                <rect key="frame" x="150" y="211" width="80" height="40"/>
-                                <color key="backgroundColor" name="orderBlue"/>
+                            </stackView>
+                            <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="K2S-Xl-i6C">
+                                <rect key="frame" x="170" y="361.5" width="240" height="180"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="实付：" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J8j-3Y-iiv">
+                                        <rect key="frame" x="30" y="30" width="52" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="right" clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="XsH-1r-luQ">
+                                        <rect key="frame" x="97" y="23.5" width="113" height="34"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
+                                    </textField>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="找零：" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ITS-KF-pBN">
+                                        <rect key="frame" x="30" y="80.5" width="52" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xgm-Ih-Yvc">
+                                        <rect key="frame" x="168.5" y="80.5" width="41.5" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7bO-Y3-Hzi" customClass="DesignableButton" customModule="SKRestaurant_iOS" customModuleProvider="target">
+                                        <rect key="frame" x="82.5" y="131" width="75" height="35"/>
+                                        <color key="backgroundColor" name="orderBlue"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="35" id="0lI-4n-HHk"/>
+                                            <constraint firstAttribute="width" constant="75" id="1oT-JW-LQU"/>
+                                        </constraints>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="确定">
+                                            <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </buttonConfiguration>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="5"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="payConfirmPressed:" destination="CQn-eC-lDl" eventType="touchUpInside" id="bI2-Yr-ayb"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="80" id="76x-eU-OUF"/>
-                                    <constraint firstAttribute="height" constant="40" id="hoO-4B-AN2"/>
+                                    <constraint firstItem="7bO-Y3-Hzi" firstAttribute="top" secondItem="ITS-KF-pBN" secondAttribute="bottom" constant="30" id="7zu-Ce-wpm"/>
+                                    <constraint firstAttribute="trailing" secondItem="XsH-1r-luQ" secondAttribute="trailing" constant="30" id="9gc-wW-ha1"/>
+                                    <constraint firstItem="J8j-3Y-iiv" firstAttribute="leading" secondItem="K2S-Xl-i6C" secondAttribute="leading" constant="30" id="Evo-qi-rYM"/>
+                                    <constraint firstItem="XsH-1r-luQ" firstAttribute="leading" secondItem="J8j-3Y-iiv" secondAttribute="trailing" constant="15" id="GgQ-9Z-RdY"/>
+                                    <constraint firstItem="ITS-KF-pBN" firstAttribute="leading" secondItem="K2S-Xl-i6C" secondAttribute="leading" constant="30" id="JqL-3b-Ana"/>
+                                    <constraint firstItem="xgm-Ih-Yvc" firstAttribute="centerY" secondItem="ITS-KF-pBN" secondAttribute="centerY" id="Kra-VS-eSg"/>
+                                    <constraint firstItem="7bO-Y3-Hzi" firstAttribute="centerX" secondItem="K2S-Xl-i6C" secondAttribute="centerX" id="Tjj-73-axD"/>
+                                    <constraint firstItem="XsH-1r-luQ" firstAttribute="centerY" secondItem="J8j-3Y-iiv" secondAttribute="centerY" id="YKN-qF-Ug0"/>
+                                    <constraint firstAttribute="width" constant="240" id="Ygw-i9-m7d"/>
+                                    <constraint firstAttribute="height" constant="180" id="ZqI-DM-WUH"/>
+                                    <constraint firstItem="J8j-3Y-iiv" firstAttribute="top" secondItem="K2S-Xl-i6C" secondAttribute="top" constant="30" id="gbg-N2-dVj"/>
+                                    <constraint firstAttribute="trailing" secondItem="xgm-Ih-Yvc" secondAttribute="trailing" constant="30" id="qCq-ka-sNt"/>
+                                    <constraint firstItem="ITS-KF-pBN" firstAttribute="top" secondItem="J8j-3Y-iiv" secondAttribute="bottom" constant="30" id="wOV-ph-kMi"/>
                                 </constraints>
-                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                <state key="normal" title="现金">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                        <real key="value" value="5"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <action selector="cashPressed:" destination="CQn-eC-lDl" eventType="touchUpInside" id="4dL-Vk-18d"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fKP-af-Z6a" customClass="DesignableButton" customModule="SKRestaurant_iOS" customModuleProvider="target">
-                                <rect key="frame" x="350" y="211" width="80" height="40"/>
-                                <color key="backgroundColor" name="orderBlue"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="80" id="9vr-L6-Vej"/>
-                                    <constraint firstAttribute="height" constant="40" id="aee-TF-PT1"/>
-                                </constraints>
-                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                <state key="normal" title="取消">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                        <real key="value" value="5"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <action selector="cancelPressed:" destination="CQn-eC-lDl" eventType="touchUpInside" id="DJG-Qb-Wsn"/>
-                                </connections>
-                            </button>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="jXF-X9-uii"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="POO-zt-jsv" firstAttribute="leading" secondItem="fEj-vQ-qHc" secondAttribute="trailing" constant="20" id="2W5-wH-Jwq"/>
                             <constraint firstItem="16z-xm-wQN" firstAttribute="centerX" secondItem="JgU-07-kuc" secondAttribute="centerX" id="48x-ob-8rA"/>
-                            <constraint firstItem="fKP-af-Z6a" firstAttribute="centerY" secondItem="POO-zt-jsv" secondAttribute="centerY" id="9Pu-3s-4Kn"/>
-                            <constraint firstItem="fKP-af-Z6a" firstAttribute="leading" secondItem="POO-zt-jsv" secondAttribute="trailing" constant="20" id="DR7-e0-yPa"/>
-                            <constraint firstItem="16z-xm-wQN" firstAttribute="top" secondItem="2oc-ZC-Wjl" secondAttribute="bottom" constant="50" id="ZF1-iN-Rs1"/>
-                            <constraint firstItem="POO-zt-jsv" firstAttribute="centerX" secondItem="JgU-07-kuc" secondAttribute="centerX" id="h2H-ww-N8J"/>
-                            <constraint firstItem="fEj-vQ-qHc" firstAttribute="centerY" secondItem="POO-zt-jsv" secondAttribute="centerY" id="n13-Rh-Tac"/>
+                            <constraint firstItem="16z-xm-wQN" firstAttribute="top" secondItem="YSV-wM-fcP" secondAttribute="bottom" constant="30" id="5bB-mA-HJp"/>
+                            <constraint firstItem="jXF-X9-uii" firstAttribute="trailing" secondItem="aQN-gT-xd6" secondAttribute="trailing" constant="15" id="A1W-Uo-1j1"/>
+                            <constraint firstItem="aQN-gT-xd6" firstAttribute="top" secondItem="16z-xm-wQN" secondAttribute="bottom" constant="30" id="TJW-0a-I0L"/>
+                            <constraint firstItem="K2S-Xl-i6C" firstAttribute="top" secondItem="aQN-gT-xd6" secondAttribute="bottom" constant="30" id="jQL-Lf-0S2"/>
+                            <constraint firstItem="K2S-Xl-i6C" firstAttribute="centerX" secondItem="JgU-07-kuc" secondAttribute="centerX" id="oB8-Es-pcP"/>
                             <constraint firstItem="2oc-ZC-Wjl" firstAttribute="centerX" secondItem="JgU-07-kuc" secondAttribute="centerX" id="qcA-9s-3Cw"/>
-                            <constraint firstItem="POO-zt-jsv" firstAttribute="top" secondItem="16z-xm-wQN" secondAttribute="bottom" constant="50" id="xwC-Li-ELf"/>
+                            <constraint firstItem="YSV-wM-fcP" firstAttribute="top" secondItem="2oc-ZC-Wjl" secondAttribute="bottom" constant="30" id="tj5-je-B11"/>
+                            <constraint firstItem="YSV-wM-fcP" firstAttribute="centerX" secondItem="JgU-07-kuc" secondAttribute="centerX" id="yfj-Od-peF"/>
+                            <constraint firstItem="aQN-gT-xd6" firstAttribute="leading" secondItem="jXF-X9-uii" secondAttribute="leading" constant="15" id="zKh-cx-MT9"/>
                             <constraint firstItem="2oc-ZC-Wjl" firstAttribute="top" secondItem="jXF-X9-uii" secondAttribute="top" constant="50" id="zNk-uP-Zn1"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="PRButton" destination="POO-zt-jsv" id="1NQ-js-CB4"/>
+                        <outlet property="activityIndicator" destination="16z-xm-wQN" id="fHe-qt-356"/>
+                        <outlet property="amountLabel" destination="YSV-wM-fcP" id="Ta7-fH-VE6"/>
+                        <outlet property="cancelButton" destination="fKP-af-Z6a" id="ZOY-sd-PJ3"/>
+                        <outlet property="cashButton" destination="fEj-vQ-qHc" id="d9b-KO-Si6"/>
+                        <outlet property="cashFrameView" destination="K2S-Xl-i6C" id="10j-pW-jpd"/>
+                        <outlet property="giveChangeLabel" destination="xgm-Ih-Yvc" id="l5i-M3-iYn"/>
+                        <outlet property="payAmountTextField" destination="XsH-1r-luQ" id="IdY-gk-gGA"/>
+                        <outlet property="scanButton" destination="SMY-Q2-6mX" id="hkU-En-fe3"/>
+                        <outlet property="titleLable" destination="2oc-ZC-Wjl" id="GlH-2a-BIN"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oEf-Ic-1ru" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -504,17 +611,23 @@
         </scene>
     </scenes>
     <designables>
+        <designable name="7bO-Y3-Hzi">
+            <size key="intrinsicContentSize" width="59" height="34.5"/>
+        </designable>
         <designable name="Cwd-YW-eCB">
             <size key="intrinsicContentSize" width="59" height="34.5"/>
         </designable>
         <designable name="POO-zt-jsv">
-            <size key="intrinsicContentSize" width="31" height="30"/>
+            <size key="intrinsicContentSize" width="59" height="34.5"/>
+        </designable>
+        <designable name="SMY-Q2-6mX">
+            <size key="intrinsicContentSize" width="59" height="34.5"/>
         </designable>
         <designable name="fEj-vQ-qHc">
-            <size key="intrinsicContentSize" width="31" height="30"/>
+            <size key="intrinsicContentSize" width="59" height="34.5"/>
         </designable>
         <designable name="fKP-af-Z6a">
-            <size key="intrinsicContentSize" width="31" height="30"/>
+            <size key="intrinsicContentSize" width="59" height="34.5"/>
         </designable>
     </designables>
     <resources>

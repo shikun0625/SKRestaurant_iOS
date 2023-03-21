@@ -12,11 +12,15 @@ import Alamofire
 import CryptoSwift
 
 let HTTP_SERVER_ADDRESS:String = {
+#if DEBUG
     if TARGET_OS_SIMULATOR != 0 {
         return "http://127.0.0.1:8080/SKRestaurant_Server"
     } else {
         return "http://192.168.0.131:8080/SKRestaurant_Server"
     }
+#else
+    return "http://43.153.175.121:8080/SKRestaurant_Server"
+#endif
 }()
 
 enum SKHttpRequestResult {
@@ -43,6 +47,7 @@ class SKHTTPService: Equatable {
     public static let GetMenu = SKHTTPService(path: "/menu", method: .get)
     public static let PostOrder = SKHTTPService(path: "/order", method: .post)
     public static let UpdateOrder = SKHTTPService(path: "/order", method: .put)
+    public static let PostPay = SKHTTPService(path: "/pay", method: .post)
     
     var path:String = ""
     var method:HTTPMethod = .options

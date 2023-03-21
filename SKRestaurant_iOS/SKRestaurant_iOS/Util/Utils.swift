@@ -205,12 +205,14 @@ extension Notification {
     public static let SKShowMaterielViewNotification = Notification(name: .SKShowMaterielViewNotificationName)
     public static let SKShowMealsViewNotification = Notification(name: .SKShowMealsViewNotificationName)
     public static let SKShowOrderViewNotification = Notification(name: .SKShowOrderViewNotificationName)
+    public static let SKResetOrderViewNotification = Notification(name: .SKResetOrderViewNotificationName)
 }
 
 extension Notification.Name {
     public static let SKShowMaterielViewNotificationName = Notification.Name("SKShowMaterielViewNotification")
     public static let SKShowMealsViewNotificationName = Notification.Name("SKShowMealsViewNotificationName")
     public static let SKShowOrderViewNotificationName = Notification.Name("SKShowOrderViewNotificationName")
+    public static let SKResetOrderViewNotificationName = Notification.Name("SKResetOrderViewNotificationName")
     
     public static let SKMaterielAddedNotificationName = Notification.Name("SKMaterielAddedNotificationName")
     public static let SKMaterielUpdatedNotificationName = Notification.Name("SKMaterielUpdatedNotificationName")

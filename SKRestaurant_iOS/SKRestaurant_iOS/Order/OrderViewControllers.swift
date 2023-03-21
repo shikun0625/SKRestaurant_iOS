@@ -38,6 +38,20 @@ class OrderViewController: UIViewController {
         }
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        NotificationCenter.default.addObserver(self, selector: #selector(resetOrderView), name: .SKResetOrderViewNotificationName, object: nil)
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        NotificationCenter.default.removeObserver(self, name: .SKResetOrderViewNotificationName, object: nil)
+    }
+    
+    @objc func resetOrderView(notification:Notification) {
+        cancelPressed(nil)
+    }
+    
     private func loadData() -> Void {
         ProgressHUD.show(nil, interaction: false)
         let error = MenuService(delegate: self).getMenu()
@@ -106,7 +120,9 @@ class OrderViewController: UIViewController {
         if segue.destination is WaitingForPayViewController {
             let vc = segue.destination as! WaitingForPayViewController
             vc.isModalInPresentation = true
-            vc.orderId = (sender as! String)
+            vc.amount = Float(totalAmount.text!)
+            vc.selectedMenuList = selectedMenuList
+            vc.orderType = takeawayButton.isSelected ? 1 : 0
         }
     }
     
@@ -121,15 +137,7 @@ class OrderViewController: UIViewController {
     }
     
     @IBAction func orderPressed(_ sender: DesignableButton) {
-        ProgressHUD.show(nil, interaction: false)
-        let input = CreateOrderInput()
-        input.totalAmount = Float(totalAmount.text!)
-        input.menus = selectedMenuList
-        input.type = takeawayButton.isSelected ? 1 : 0
-        let error = OrderService(bodyParameter: input, delegate: self).order()
-        if error != nil {
-            ProgressHUD.showError(error?.localizedDescription, interaction: false)
-        }
+        performSegue(withIdentifier: "toWaitingForPay", sender:nil)
     }
     @IBAction func takeawayPressed(_ sender: UIButton) {
         sender.isSelected = !sender.isSelected
@@ -147,12 +155,6 @@ extension OrderViewController: HttpServiceDelegate {
                 materiels = resultOutput.resp.materiels
                 prepareData()
                 reloadViews()
-            } else if service == .PostOrder {
-                cancelPressed(nil)
-                let resultOutput = output as! CreateOrderOutput
-                if resultOutput.resp.status == 0 && resultOutput.resp.payType == nil {
-                    performSegue(withIdentifier: "toWaitingForPay", sender: resultOutput.resp.orderId)
-                }
             }
         case .failure:
             ProgressHUD.showFailed(output == nil ? error?.localizedDescription : (output as! HttpServiceOutput).errorMessage, interaction: false)
